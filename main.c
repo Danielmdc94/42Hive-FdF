@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/23 16:53:11 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/25 11:55:53 by dpalacio         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(void)
 	mlx_key_hook(win_ptr, key_controller, &mlx);
 	mlx_mouse_hook(win_ptr, mouse_controller, &mlx);
 	mlx_string_put(mlx_ptr, win_ptr, 150, 20, 0xFFFF00, "Daniel's Art Class");
+	draw_wireframe(50, 50, 25, &mlx);
 	mlx_loop(mlx_ptr);
 }

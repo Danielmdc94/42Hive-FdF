@@ -6,13 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/23 16:59:21 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/25 12:01:59 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	draw_line(t_line line, t_mlx *param)
+int	draw_line(t_line line, t_mlx *param, int color)
 {
 	float	dx;
 	float	dy;
@@ -32,7 +32,7 @@ int	draw_line(t_line line, t_mlx *param)
 	dy = dy / step;
 	while (step > 0)
 	{
-		mlx_pixel_put(param->mlx_ptr, param->win_ptr, x, y, 0xFFFFFF);
+		mlx_pixel_put(param->mlx_ptr, param->win_ptr, x, y, color);
 		x = x + dx;
 		y = y + dy;
 		step--;
@@ -40,13 +40,29 @@ int	draw_line(t_line line, t_mlx *param)
 	return (1);
 }
 
-int	draw_wireframe(int x0, int y0, int gap)
+int	draw_wireframe(int x0, int y0, int gap, t_mlx *param)
 {
 	int x;
 	int y;
+	t_line line;
 
-	x0 = 50;
-	y0 = 50;
-	gap = 10;
-	
+	y = y0;
+	while (y <= 450)
+	{
+		x = x0;
+		while (x <= 450)
+		{
+			line.x0 = x;
+			line.y0 = y;
+			line.x1 = x;
+			line.y1 = y + gap;
+			draw_line(line, param, 0xFFFFFF);
+			line.x1 = x + gap;
+			line.y1 = y;
+			draw_line(line, param, 0xFFFFFF);
+			x = x + gap;
+		}
+		y = y + gap;
+	}
+	return (1);
 }
