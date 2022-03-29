@@ -6,13 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/23 16:48:40 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:42:21 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_controller(int key, t_mlx *param)
+int	key_controller(int key, t_data *data)
 {
 	ft_putnbr(key);
 	ft_putchar('\n');

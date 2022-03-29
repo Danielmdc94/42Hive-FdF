@@ -6,13 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/25 12:01:59 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:43:03 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	draw_line(t_line line, t_mlx *param, int color)
+int	draw_line(t_line line, t_data *data, int color)
 {
 	float	dx;
 	float	dy;
@@ -32,37 +32,47 @@ int	draw_line(t_line line, t_mlx *param, int color)
 	dy = dy / step;
 	while (step > 0)
 	{
-		mlx_pixel_put(param->mlx_ptr, param->win_ptr, x, y, color);
+		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, color);
 		x = x + dx;
 		y = y + dy;
 		step--;
 	}
 	return (1);
 }
-
-int	draw_wireframe(int x0, int y0, int gap, t_mlx *param)
+/*
+int	draw_wireframe(t_wireframe wireframe, t_mlx *param, int color)
 {
-	int x;
-	int y;
-	t_line line;
+	t_line	line;
+	int		x;
+	int		y;
+	int		steps;
 
-	y = y0;
-	while (y <= 450)
+	x = wireframe.x0;
+	y = wireframe.y0;
+	steps = wireframe.steps;
+	while (steps > 0)
 	{
-		x = x0;
-		while (x <= 450)
-		{
-			line.x0 = x;
-			line.y0 = y;
-			line.x1 = x;
-			line.y1 = y + gap;
-			draw_line(line, param, 0xFFFFFF);
-			line.x1 = x + gap;
-			line.y1 = y;
-			draw_line(line, param, 0xFFFFFF);
-			x = x + gap;
-		}
-		y = y + gap;
+		line.x0 = x;
+		line.y0 = y;
+		line.x1 = wireframe.x1;
+		line.y1 = y;
+		draw_line(line, param, color);
+		y = y + (y - wireframe.y0) / wireframe.steps;
+		steps--;
 	}
+	x = wireframe.x0;
+	y = wireframe.y0;
+	steps = wireframe.steps;
+	while (steps > 0)
+	{
+		line.x0 = x;
+		line.y0 = y;
+		line.x1 = x;
+		line.y1 = wireframe.y1;
+		draw_line(line, param, color);
+		x = x + (x - wireframe.x0) / wireframe.steps;
+		steps--;
+	}
+
 	return (1);
-}
+}*/

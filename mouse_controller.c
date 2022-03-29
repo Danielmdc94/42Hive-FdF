@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/25 12:35:43 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:42:38 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //void	wheel_up();
 //void	wheel_down();
 
-int	mouse_controller(int button, int x, int y, t_mlx *param)
+int	mouse_controller(int button, int x, int y, t_data *data)
 {
 	t_line		line;
 	static int	x_save;
@@ -62,7 +62,7 @@ int	mouse_controller(int button, int x, int y, t_mlx *param)
 		{
 			line.x1 = x;
 			line.y1 = y;
-			draw_line(line, param, rgb);
+			draw_line(line, data, rgb);
 			x_save = -1;
 			y_save = -1;
 		}
@@ -78,7 +78,7 @@ int	mouse_controller(int button, int x, int y, t_mlx *param)
 		{
 			line.x1 = x;
 			line.y1 = y;
-			draw_line(line, param, rgb);
+			draw_line(line, data, rgb);
 		}
 	}
 	if (button == 3)
@@ -92,7 +92,7 @@ int	mouse_controller(int button, int x, int y, t_mlx *param)
 		{
 			line.x1 = x;
 			line.y1 = y;
-			draw_line(line, param, rgb);
+			draw_line(line, data, rgb);
 			x_save = x;
 			y_save = y;
 		}
