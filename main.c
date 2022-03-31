@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/29 16:53:19 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:03:53 by dpalacio         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -20,24 +20,24 @@ int	main(int argc, char **argv)
 	char	**file;
 	int		i;
 
-	i = 3;
 	if (argc != 2)
 		return (0);
-	file = read_file(argv[1]);
+	file = read_file(argv[1], &data);
+	i = data.map_height;
 	while (i > 0)
 	{
 		ft_putendl(*file);
 		file++;
 		i--;
 	}
-	fill_map(file, 3);
+	ft_putnbr(data.map_height);
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
+	win_ptr = mlx_new_window(mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	data.mlx_ptr = mlx_ptr;
 	data.win_ptr = win_ptr;
 	mlx_key_hook(win_ptr, key_controller, &data);
 	mlx_mouse_hook(win_ptr, mouse_controller, &data);
-	mlx_string_put(mlx_ptr, win_ptr, 150, 20, 0xFFFF00, "Daniel's Art Class");
+	mlx_string_put(mlx_ptr, win_ptr, ((WIN_WIDTH / 2) - 100), 20, 0xFFFF00, "Daniel's Art Class");
 //	draw_wireframe(wireframe, &mlx, 0xFFFFFF);
 	mlx_loop(mlx_ptr);
 }

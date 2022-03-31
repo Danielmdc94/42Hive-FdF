@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/29 16:42:21 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:04:47 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	key_controller(int key, t_data *data)
 {
 	ft_putnbr(key);
 	ft_putchar('\n');
+	if (key == 53)
+		exit(0);
 	return (1);
 }
-

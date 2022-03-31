@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/29 16:42:38 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:05:09 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,5 @@ int	mouse_controller(int button, int x, int y, t_data *data)
 		color = color + 1;
 	if (button == 5)
 		color = color - 1;
-
 	return (1);
 }
