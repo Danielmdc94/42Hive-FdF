@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/31 17:03:53 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:53:50 by dpalacio         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 	t_data	data;
 	char	**file;
+	t_point	*points;
 	int		i;
 
 	if (argc != 2)
@@ -31,13 +32,15 @@ int	main(int argc, char **argv)
 		i--;
 	}
 	ft_putnbr(data.map_height);
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fdf");
-	data.mlx_ptr = mlx_ptr;
-	data.win_ptr = win_ptr;
-	mlx_key_hook(win_ptr, key_controller, &data);
-	mlx_mouse_hook(win_ptr, mouse_controller, &data);
-	mlx_string_put(mlx_ptr, win_ptr, ((WIN_WIDTH / 2) - 100), 20, 0xFFFF00, "Daniel's Art Class");
-//	draw_wireframe(wireframe, &mlx, 0xFFFFFF);
-	mlx_loop(mlx_ptr);
+
+	points = get_points(file, data);
+	ft_putnbr((points[40]).z);
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
+	data.mlx = mlx;
+	data.win = win;
+	mlx_key_hook(win, key_controller, &data);
+	mlx_mouse_hook(win, mouse_controller, &data);
+	mlx_string_put(mlx, win, ((WIN_WIDTH / 2) - 100), 20, 0xFFFF00, "Daniel's Art Class");
+	mlx_loop(mlx);
 }

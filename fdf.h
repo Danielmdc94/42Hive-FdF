@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/31 17:06:26 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:47:54 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 //struct for mlx and window ref.
 typedef struct s_data{
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
+	void	*img;
 	int		map_width;
 	int		map_height;
 }				t_data;
@@ -60,5 +61,5 @@ int		key_controller(int key, t_data *data);
 int		draw_line(t_line line, t_data *data, int color);
 //read_file.c
 char	**read_file(char *file, t_data *data);
-
+t_point	*get_points(char **file, t_data data);
 #endif

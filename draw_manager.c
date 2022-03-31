@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/29 16:43:03 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:58:44 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	draw_line(t_line line, t_data *data, int color)
 	dy = dy / step;
 	while (step > 0)
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, color);
+		mlx_pixel_put(data->mlx, data->win, x, y, color);
 		x = x + dx;
 		y = y + dy;
 		step--;
