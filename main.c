@@ -6,11 +6,37 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/01 12:34:50 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:48:58 by dpalacio         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	test_print(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < data->map_height)
+	{
+		while (x < data->map_width)
+		{
+			ft_putnbr(data->matrix[y][x]);
+			ft_putchar(',');
+			ft_putnbr(data->color_matrix[y][x]);
+			ft_putchar(9);
+			x++;
+		}
+		ft_putchar('\n');
+		ft_putchar('\n');
+		ft_putchar('\n');
+		y++;
+		x = 0;
+	}
+}
+
 
 void	error_print(char *e_string)
 {
@@ -21,38 +47,13 @@ void	error_print(char *e_string)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	char	**file;
-	int		i;//test variable
-	t_point *point_list;
 
 	if (argc != 2)
 		error_print("Usage: ./fdf <map_file>");
-	file = read_file(argv[1], &data);
-//	point_list = make_point_list(file, &data);
-//test start
-	i = data.map_height;
-	while (i > 0)
-	{
-		ft_putendl(*file);
-		file++;
-		i--;
-	}
-/*	i = 0;
-	while (i < data.map_height * data.map_width)
-	{
-		if ((i % data.map_width) == 0)
-			ft_putchar('\n');
-		ft_putnbr(point_list->z);
-		ft_putchar(' ');
-		i++;
-		point_list++;
-	}
-*/
-	ft_putstr("Height: ");
-	ft_putnbr(data.map_height);
-	ft_putstr("\nWidth: ");
-	ft_putnbr(data.map_width);
-//test end
+	read_file(argv[1], &data);
+
+	test_print(&data);
+
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	mlx_key_hook(data.win, key_controller, &data);

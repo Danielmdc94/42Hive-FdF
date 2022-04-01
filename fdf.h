@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/01 12:34:32 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:20:55 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # define WIN_WIDTH	1080
 # define WIN_HEIGHT	920
 
+# define WHITE		0xFFFFFF
+# define RED		0xFF0000
+# define GREEN		0x00FF00
+# define BLUE		0x0000FF
+# define YELLOW		0xFFFF00
+# define CYAN		0x00FFFF
+# define MAGENTA	0xFF00FF
+
 //struct for mlx and window ref.
 typedef struct s_data{
 	void	*mlx;
@@ -29,6 +37,8 @@ typedef struct s_data{
 	void	*img;
 	int		map_width;
 	int		map_height;
+	int		**matrix;
+	int		**color_matrix;
 }				t_data;
 
 typedef struct s_vector{
@@ -66,6 +76,5 @@ int		key_controller(int key, t_data *data);
 int		draw_line(t_line line, t_data *data, int color);
 
 //read_file.c
-char	**read_file(char *file, t_data *data);
-//t_point	*make_point_list(char **file, t_data *data);
+void	read_file(char *file, t_data *data);
 #endif

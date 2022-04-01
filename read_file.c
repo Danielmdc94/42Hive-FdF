@@ -6,40 +6,34 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:04:10 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/01 12:32:45 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:45:17 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 void	get_width(char *line, t_data *data);
+void	create_matrix(t_data *data);
+void	fill_matrix(t_data *data, char *file);
+void	fill_line(t_data *data, char **line_arr, int y);
 
-char	**read_file(char *file, t_data *data)
+void	read_file(char *file, t_data *data)
 {
-	char	**file_arr;
 	char	*line;
 	int		fd;
 
 	data->map_height = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error_print("Error (0): Failed to read");
+		error_print("Error (0): Failed to open file");
 	while (get_next_line(fd, &line) == 1)
 	{
 		get_width(line, data);
 		data->map_height += 1;
 	}
 	close(fd);
-	file_arr = ft_memalloc(sizeof(char **) * data->map_height);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		error_print("Error (0): Failed to read");
-	while (get_next_line(fd, &line) == 1)
-	{
-		*file_arr = ft_strdup(line);
-		file_arr++;
-	}
-	return (file_arr - data->map_height);
+	create_matrix(data);
+	fill_matrix(data, file);
 }
 
 void	get_width(char *line, t_data *data)
@@ -69,30 +63,69 @@ void	get_width(char *line, t_data *data)
 		error_print("Error (2): Empty file");
 }
 
-t_point	*make_point_list(char **file, t_data *data)
+void	create_matrix(t_data *data)
 {
-	t_point	*point_list;
-	int		x;
+	int	i;
+
+	i = 0;
+	data->matrix = (int **)ft_memalloc((data->map_height + 1) * sizeof(int *));
+	if (!data->matrix)
+		error_print("Error (3): Failed to allocate matrix");
+	data->matrix[data->map_height] = NULL;
+	data->color_matrix = (int **)ft_memalloc((data->map_height + 1) * sizeof(char *));
+	if (!data->color_matrix)
+		error_print("Error (4): Failed to allocate color matrix");
+	data->color_matrix[data->map_height] = NULL;
+	while (i <= data->map_height)
+	{
+		data->matrix[i] = (int *)ft_memalloc((data->map_width) * sizeof(int));
+		if (!data->matrix[i])
+			error_print("Error (3): Failed to allocate matrix");
+		data->color_matrix[i] = (int *)ft_memalloc((data->map_width) * sizeof(int));
+		if (!data->color_matrix[i])
+			error_print("Error (4): Failed to allocate color matrix");
+		i++;
+	}
+}
+
+void	fill_matrix(t_data *data, char *file)
+{
+	char	**line_arr;
+	char	*line;
+	int		fd;
 	int		y;
 
-	x = 0;
 	y = 0;
-	point_list = ft_memalloc(sizeof(t_point *) * data->map_height * data->map_width);
-	while (y < data->map_height)
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		error_print("Error (5): Failed to open during fill_matrix()");
+	while (get_next_line(fd, &line) == 1)
 	{
-		while (x < data->map_width)
-		{
-			point_list->x = x;
-			point_list->y = y;
-			point_list->z = ft_atoi(*file);
-			point_list++;
-			x++;
-			while (((**file) - 1) != ' ')
-				(*file)++;
-		}
-		x = 0;
-		file++;
+		line_arr = ft_strsplit(line, ' ');
+		fill_line(data, line_arr, y);
 		y++;
+		free(line_arr);
+		free(line);
 	}
-	return (point_list - (data->map_height * data->map_width));
+	close(fd);
+}
+
+void	fill_line(t_data *data, char **line_arr, int y)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
+	while (line_arr[x] != '\0')
+	{
+		data->matrix[y][x] = ft_atoi(line_arr[x]);
+		while(line_arr[x][i] != 'x' && line_arr[x][i] != '\0')
+			i++;
+		if (line_arr[x][i++] == 'x')
+			data->color_matrix[y][x] = ft_atoi_base(&line_arr[x][i], 16);
+		free(line_arr[x]);
+		i = 0;
+		x++;
+	}
 }
