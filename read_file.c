@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:04:10 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/01 15:45:17 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:53:33 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	create_matrix(t_data *data)
 	if (!data->matrix)
 		error_print("Error (3): Failed to allocate matrix");
 	data->matrix[data->map_height] = NULL;
-	data->color_matrix = (int **)ft_memalloc((data->map_height + 1) * sizeof(char *));
+	data->color_matrix
+		= (int **)ft_memalloc((data->map_height + 1) * sizeof(char *));
 	if (!data->color_matrix)
 		error_print("Error (4): Failed to allocate color matrix");
 	data->color_matrix[data->map_height] = NULL;
@@ -81,7 +82,8 @@ void	create_matrix(t_data *data)
 		data->matrix[i] = (int *)ft_memalloc((data->map_width) * sizeof(int));
 		if (!data->matrix[i])
 			error_print("Error (3): Failed to allocate matrix");
-		data->color_matrix[i] = (int *)ft_memalloc((data->map_width) * sizeof(int));
+		data->color_matrix[i]
+			= (int *)ft_memalloc((data->map_width) * sizeof(int));
 		if (!data->color_matrix[i])
 			error_print("Error (4): Failed to allocate color matrix");
 		i++;
@@ -120,10 +122,19 @@ void	fill_line(t_data *data, char **line_arr, int y)
 	while (line_arr[x] != '\0')
 	{
 		data->matrix[y][x] = ft_atoi(line_arr[x]);
-		while(line_arr[x][i] != 'x' && line_arr[x][i] != '\0')
+		while (line_arr[x][i] != 'x' && line_arr[x][i] != '\0')
 			i++;
 		if (line_arr[x][i++] == 'x')
 			data->color_matrix[y][x] = ft_atoi_base(&line_arr[x][i], 16);
+		else
+		{
+			if (data->matrix[y][x] == 0)
+				data->color_matrix[y][x] = WHITE;
+			else if (data->matrix[y][x] > 0)
+				data->color_matrix[y][x] = RED;
+			else
+				data->color_matrix[y][x] = BLUE;
+		}
 		free(line_arr[x]);
 		i = 0;
 		x++;

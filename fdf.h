@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/01 14:20:55 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:46:22 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 # include <math.h>
 # include <fcntl.h>
 
+/*----RESOLUTION----*/
 # define WIN_WIDTH	1080
 # define WIN_HEIGHT	920
-
+/*------COLORS------*/
 # define WHITE		0xFFFFFF
 # define RED		0xFF0000
 # define GREEN		0x00FF00
@@ -30,7 +31,7 @@
 # define CYAN		0x00FFFF
 # define MAGENTA	0xFF00FF
 
-//struct for mlx and window ref.
+/*-------DATA-------*/
 typedef struct s_data{
 	void	*mlx;
 	void	*win;
@@ -39,15 +40,12 @@ typedef struct s_data{
 	int		map_height;
 	int		**matrix;
 	int		**color_matrix;
+	int		zoom;
+	int		x_off;
+	int		y_off;
 }				t_data;
 
-typedef struct s_vector{
-	void	**items;
-	int		size;
-	int		total;
-}				t_vector;
-
-//struct for start and end points of a line
+/*-------LINE------*/
 typedef struct s_line{
 	int	x0;
 	int	y0;
@@ -55,7 +53,7 @@ typedef struct s_line{
 	int	y1;
 }				t_line;
 
-//struct for a point in space
+/*-------POINT------*/
 typedef struct s_point{
 	int	x;
 	int	y;
@@ -63,7 +61,7 @@ typedef struct s_point{
 	int	color;
 }				t_point;
 
-//main.c
+/*-------MAIN-------*/
 void	error_print(char *e_string);
 
 //mouse_controller,c
@@ -74,6 +72,7 @@ int		key_controller(int key, t_data *data);
 
 //draw_manager.c
 int		draw_line(t_line line, t_data *data, int color);
+void	draw_map(t_data *data);
 
 //read_file.c
 void	read_file(char *file, t_data *data);
