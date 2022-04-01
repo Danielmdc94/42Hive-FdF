@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/31 18:47:54 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:34:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,22 @@ typedef struct s_point{
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 }				t_point;
+
+//main.c
+void	error_print(char *e_string);
 
 //mouse_controller,c
 int		mouse_controller(int button, int x, int y, t_data *data);
 
 //key_controller.c
 int		key_controller(int key, t_data *data);
+
 //draw_manager.c
 int		draw_line(t_line line, t_data *data, int color);
+
 //read_file.c
 char	**read_file(char *file, t_data *data);
-t_point	*get_points(char **file, t_data data);
+//t_point	*make_point_list(char **file, t_data *data);
 #endif
