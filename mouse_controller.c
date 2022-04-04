@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/03/31 17:05:09 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:31:20 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	mouse_controller(int button, int x, int y, t_data *data)
 		{
 			line.x1 = x;
 			line.y1 = y;
-			draw_line(line, data, rgb);
+			draw_line(line, data, rgb, rgb);
 			x_save = -1;
 			y_save = -1;
 		}
@@ -78,7 +78,7 @@ int	mouse_controller(int button, int x, int y, t_data *data)
 		{
 			line.x1 = x;
 			line.y1 = y;
-			draw_line(line, data, rgb);
+			draw_line(line, data, rgb, rgb);
 		}
 	}
 	if (button == 3)
@@ -92,7 +92,7 @@ int	mouse_controller(int button, int x, int y, t_data *data)
 		{
 			line.x1 = x;
 			line.y1 = y;
-			draw_line(line, data, rgb);
+			draw_line(line, data, rgb, rgb);
 			x_save = x;
 			y_save = y;
 		}

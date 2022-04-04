@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/01 17:46:22 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:56:41 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,14 @@ int		mouse_controller(int button, int x, int y, t_data *data);
 int		key_controller(int key, t_data *data);
 
 //draw_manager.c
-int		draw_line(t_line line, t_data *data, int color);
+int		draw_line(t_line line, t_data *data, int color0, int color1);
 void	draw_map(t_data *data);
 
+int		rgb_to_hex(int red, int blue, int green);
+int		hex_to_red(int hex);
+int		hex_to_green(int hex);
+int		hex_to_blue(int hex);
+int		color_gradient(int color0, int color1, int steps);
 //read_file.c
 void	read_file(char *file, t_data *data);
 #endif
