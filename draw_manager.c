@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/04 15:15:33 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:35:08 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,33 @@
 void	offset_draw(t_data *data);
 t_line	make_line(t_data *data, char *dir, int x, int y);
 
-int	draw_line(t_line line, t_data *data, int color0, int color1)
+void	draw(t_data *data)
+{
+	mlx_clear_window(data->mlx, data->win);
+	data->img = mlx_new_image(data->mlx, WIN_WIDTH,WIN_HEIGHT);
+	if (!data->img)
+		error_print("Error(4): Image not allocated");
+	data->img_addr = mlx_get_data_addr(data->img,&data->px_bits, &data->line_bytes, &data->endian);
+	if (!data->img_addr)
+		error_print("Error(4): Image address not allocated");
+	draw_map(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	mlx_destroy_image(data->mlx, data->img);
+	data->img = NULL;
+	data->img_addr = NULL;
+}
+
+void	img_pixel_put(t_data *data, int x, int y, int color)
+{
+	char *pixel;
+
+	if (data->px_bits != 32)
+		color = mlx_get_color_value(data->mlx, color);
+	pixel = data->img_addr + (y * data->line_bytes) + (x * (data->px_bits / 8));
+	*(unsigned int *)pixel = color;
+}
+
+int	draw_line(t_line line, t_data *data, int c0, int c1)
 {
 	float	dx;
 	float	dy;
@@ -33,10 +59,11 @@ int	draw_line(t_line line, t_data *data, int color0, int color1)
 		step = ft_abs(dy);
 	dx = dx / step;
 	dy = dy / step;
-	while (step > 0)
+	while (step >= 0)
 	{
-		mlx_pixel_put(data->mlx, data->win, x, y, color_gradient(color0, color1, step));
-		color0 = color_gradient(color0, color1, step);
+		img_pixel_put(data, x, y, color_gradient(c0, c1, step));
+	//	mlx_pixel_put(data->mlx, data->win, x, y, color_gradient(c0, c1, step));
+		c0 = color_gradient(c0, c1, step);
 		x = x + dx;
 		y = y + dy;
 		step--;
@@ -56,16 +83,16 @@ void	draw_map(t_data *data)
 	{
 		while (x < data->map_width - 1)
 		{
-			draw_line(make_line(data, "horizontal", x, y),
-					data, data->color_matrix[y][x], data->color_matrix[y][x + 1]);
+			draw_line(make_line(data, "horizontal", x, y), data,
+				data->color_matrix[y][x], data->color_matrix[y][x + 1]);
 			if (y < data->map_height - 1)
-				draw_line(make_line(data, "vertical", x, y),
-						data, data->color_matrix[y][x], data->color_matrix[y + 1][x]);
+				draw_line(make_line(data, "vertical", x, y), data,
+					data->color_matrix[y][x], data->color_matrix[y + 1][x]);
 			x++;
 		}
 		if (y < data->map_height - 1)
-			draw_line(make_line(data, "vertical", x, y),
-					data, data->color_matrix[y][x], data->color_matrix[y + 1][x]);
+			draw_line(make_line(data, "vertical", x, y), data,
+				data->color_matrix[y][x], data->color_matrix[y + 1][x]);
 		x = 0;
 		y++;
 	}
@@ -106,71 +133,4 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 		line.y1 = (y * data->zoom) + data->y_off + data->zoom;
 	}
 	return (line);
-}
-
-int	rgb_to_hex(int red, int green, int blue)
-{
-	int	hex;
-
-	hex = blue + (green << 8) + (red << 16);
-	return (hex);
-}
-int	hex_to_red(int hex)
-{
-	int	red;
-
-	red = hex >> 16;
-	return (red);
-}
-
-int	hex_to_green(int hex)
-{
-	int	green;
-
-	green = (hex & 0x00FF00) >> 8;
-	return (green);
-}
-
-int	hex_to_blue(int hex)
-{
-	int	blue;
-
-	blue = (hex & 0x0000FF);
-	return (blue);
-}
-
-int	color_gradient(int color0, int color1, int steps)
-{
-	int	red;
-	int	green;
-	int	blue;
-
-	if (hex_to_red(color0) == hex_to_red(color1))
-		red = hex_to_red(color0);
-	else
-	{
-		if (hex_to_red(color0) < hex_to_red(color1))
-		red = (hex_to_red(color1) - hex_to_red(color0)) / steps + hex_to_red(color0);
-		if (hex_to_red(color1) < hex_to_red(color0))
-		red = hex_to_red(color0) - (hex_to_red(color0) - hex_to_red(color1)) / steps;
-	}
-	if (hex_to_green(color0) == hex_to_green(color1))
-		green = hex_to_green(color0);
-	else
-	{
-		if (hex_to_green(color0) < hex_to_green(color1))
-		green = (hex_to_green(color1) - hex_to_green(color0)) / steps + hex_to_green(color0);
-		if (hex_to_green(color1) < hex_to_green(color0))
-		green = hex_to_green(color0) - (hex_to_green(color0) - hex_to_green(color1)) / steps;
-	}
-	if (hex_to_blue(color0) == hex_to_blue(color1))
-		blue = hex_to_blue(color0);
-	else
-	{
-		if (hex_to_blue(color0) < hex_to_blue(color1))
-			blue = (hex_to_blue(color1) - hex_to_blue(color0)) / steps + hex_to_blue(color0);
-		if (hex_to_blue(color1) < hex_to_blue(color0))
-			blue = hex_to_blue(color0) - (hex_to_blue(color0) - hex_to_blue(color1)) / steps;
-	}
-	return (rgb_to_hex(red, green, blue));
 }

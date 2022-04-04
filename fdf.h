@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/04 13:56:41 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:34:27 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ typedef struct s_data{
 	void	*mlx;
 	void	*win;
 	void	*img;
+	int		px_bits;
+	int		line_bytes;
+	int		endian;
+	char	*img_addr;
 	int		map_width;
 	int		map_height;
 	int		**matrix;
@@ -63,22 +67,25 @@ typedef struct s_point{
 
 /*-------MAIN-------*/
 void	error_print(char *e_string);
-
+void	isometric(int *x, int *y, float z, t_data *data);
 //mouse_controller,c
 int		mouse_controller(int button, int x, int y, t_data *data);
 
 //key_controller.c
 int		key_controller(int key, t_data *data);
-
+void	draw(t_data *data);
 //draw_manager.c
 int		draw_line(t_line line, t_data *data, int color0, int color1);
 void	draw_map(t_data *data);
-
+void	img_pixel_put(t_data *data, int x, int y, int color);
+/*---COLOR MANAGER--*/
 int		rgb_to_hex(int red, int blue, int green);
 int		hex_to_red(int hex);
 int		hex_to_green(int hex);
 int		hex_to_blue(int hex);
-int		color_gradient(int color0, int color1, int steps);
+void	choose_color(t_data *data, int x, int y);
+/*--COLOR GRADIENT--*/
+int		color_gradient(int c0, int c1, int steps);
 //read_file.c
 void	read_file(char *file, t_data *data);
 #endif
