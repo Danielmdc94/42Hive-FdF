@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/04 19:34:27 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:31:20 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ typedef struct s_point{
 /*-------MAIN-------*/
 void	error_print(char *e_string);
 void	isometric(int *x, int *y, float z, t_data *data);
+
+/*-----CONTROLS-----*/
+void	controls(t_data *data);
+void	display_controls(t_data *data);
 //mouse_controller,c
 int		mouse_controller(int button, int x, int y, t_data *data);
 

@@ -6,7 +6,7 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 12:22:28 by dpalacio          #+#    #+#              #
-#    Updated: 2022/04/04 15:44:47 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/04/05 12:30:44 by dpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ LIB = -L ./libft -lft -L /usr/local/lib/ -lmlx
 
 FW = -framework OpenGL -framework AppKit
 
-SRC = main.c mouse_controller.c key_controller.c draw_manager.c read_file.c color_gradient.c color_manager.c
+SRC = main.c mouse_controller.c key_controller.c draw_manager.c \
+	  read_file.c color_gradient.c color_manager.c controls.c
 
 OBJ = $(SRC:.c=.o)
 

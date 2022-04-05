@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/04 19:47:12 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:31:19 by dpalacio         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ int	main(int argc, char **argv)
 	data.img = mlx_new_image(data.mlx, WIN_WIDTH,WIN_HEIGHT);
 	data.img_addr = mlx_get_data_addr(data.img,&data.px_bits, &data.line_bytes, &data.endian);
 	draw(&data);
-	mlx_key_hook(data.win, key_controller, &data);
-	mlx_mouse_hook(data.win, mouse_controller, &data);
+	controls(&data);
 	/*----TEST STRING DRAW----*/
 	mlx_string_put(data.mlx, data.win, ((WIN_WIDTH / 2) - 100), 20, YELLOW, "Daniel's Art Class");
 	mlx_loop(data.mlx);
