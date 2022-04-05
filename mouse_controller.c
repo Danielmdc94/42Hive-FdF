@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 16:20:05 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:39:59 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ int	mouse_wheel(int button, int x, int y, t_data *data)
 		if (button == 4)
 	{
 		data->zoom += 1;
-		ft_putnbr(data->zoom);
+		data->x_off -= data->map_width / 2;
+		data->y_off -= data->map_height / 2;
 		draw(data);
 	}
 	if (button == 5)
 	{
 		if (data->zoom > 1)
+		{
 			data->zoom -= 1;
-		ft_putnbr(data->zoom);
+		data->x_off += data->map_width / 2;
+		data->y_off += data->map_height / 2;
+		}
 		draw(data);
 	}
 	return (1);
