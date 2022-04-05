@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 12:31:20 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 17:23:06 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <fcntl.h>
 
 /*----RESOLUTION----*/
-# define WIN_WIDTH	1080
-# define WIN_HEIGHT	920
+# define WIN_WIDTH	1920
+# define WIN_HEIGHT	1080
 /*------COLORS------*/
 # define WHITE		0xFFFFFF
 # define RED		0xFF0000
@@ -72,24 +72,34 @@ void	isometric(int *x, int *y, float z, t_data *data);
 /*-----CONTROLS-----*/
 void	controls(t_data *data);
 void	display_controls(t_data *data);
-//mouse_controller,c
-int		mouse_controller(int button, int x, int y, t_data *data);
+void	draw_ui(t_data *data);
 
-//key_controller.c
-int		key_controller(int key, t_data *data);
-void	draw(t_data *data);
-//draw_manager.c
+/*-MOUSE CONTROLLER-*/
+int		mouse_controller(int button, int x, int y, t_data *data);
+int		mouse_wheel(int button, int x, int y, t_data *data);
+
+/*--KEY CONTROLLER--*/
+int		exit_fdf(int key, t_data *data);
+int		pan_view(int key, t_data *data);
+
+/*---DRAW MANAGER---*/
+void	offset_draw(t_data *data);
 int		draw_line(t_line line, t_data *data, int color0, int color1);
 void	draw_map(t_data *data);
 void	img_pixel_put(t_data *data, int x, int y, int color);
+void	draw(t_data *data);
+
 /*---COLOR MANAGER--*/
 int		rgb_to_hex(int red, int blue, int green);
 int		hex_to_red(int hex);
 int		hex_to_green(int hex);
 int		hex_to_blue(int hex);
 void	choose_color(t_data *data, int x, int y);
+
 /*--COLOR GRADIENT--*/
 int		color_gradient(int c0, int c1, int steps);
-//read_file.c
+
+/*-----READ FILE----*/
 void	read_file(char *file, t_data *data);
+
 #endif

@@ -6,17 +6,29 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/04 12:31:20 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:20:05 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//void	left_click();
-//void	right_click();
-//void	wheel_click();
-//void	wheel_up();
-//void	wheel_down();
+int	mouse_wheel(int button, int x, int y, t_data *data)
+{
+		if (button == 4)
+	{
+		data->zoom += 1;
+		ft_putnbr(data->zoom);
+		draw(data);
+	}
+	if (button == 5)
+	{
+		if (data->zoom > 1)
+			data->zoom -= 1;
+		ft_putnbr(data->zoom);
+		draw(data);
+	}
+	return (1);
+}
 
 int	mouse_controller(int button, int x, int y, t_data *data)
 {
@@ -98,8 +110,20 @@ int	mouse_controller(int button, int x, int y, t_data *data)
 		}
 	}
 	if (button == 4)
-		color = color + 1;
+//		color = color + 1;
+	{
+		data->zoom += 1;
+		ft_putnbr(data->zoom);
+		draw(data);
+	}
 	if (button == 5)
-		color = color - 1;
+//		color = color - 1;
+	{
+		if (data->zoom > 1)
+			data->zoom -= 1;
+		ft_putnbr(data->zoom);
+		draw(data);
+	}
+
 	return (1);
 }
