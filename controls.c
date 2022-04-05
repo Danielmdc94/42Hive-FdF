@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:42:50 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 18:49:47 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 20:55:08 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	controls(t_data *data)
 
 void	display_controls(t_data *data)
 {
-	mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 160, 0xEAEAEA,
+	mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 160, 0xf6f095,
 		"KEYBOARD:");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 135, 0xEAEAEA,
 		"W, A, S, D - Pan view Up, Left, Down, Right");
@@ -33,7 +33,7 @@ void	display_controls(t_data *data)
 		"PH - Placeholder");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 35, 0xEAEAEA,
 		"PH - Placeholder");
-	mlx_string_put(data->mlx, data->win, 525, WIN_HEIGHT - 160, 0xEAEAEA,
+	mlx_string_put(data->mlx, data->win, 525, WIN_HEIGHT - 160, 0xf6f095,
 		"MOUSE:");
 	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 135, 0xEAEAEA,
 		"LEFT CLICK - Placeholder");

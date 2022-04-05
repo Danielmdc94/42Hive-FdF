@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 18:39:59 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 20:27:46 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	mouse_wheel(int button, int x, int y, t_data *data)
 	}
 	return (1);
 }
-
+/*
 int	mouse_controller(int button, int x, int y, t_data *data)
 {
 	t_line		line;
@@ -130,4 +130,4 @@ int	mouse_controller(int button, int x, int y, t_data *data)
 	}
 
 	return (1);
-}
+}*/

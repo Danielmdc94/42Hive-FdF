@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 18:46:29 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 20:47:21 by dpalacio         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	test_print(t_data *data)
 void	isometric(int *x, int *y, float z, t_data *data)
 {
 	*x = ((*x - *y) * cos(0.8));
-	*y = ((*x + *y) * sin(0.8) - (z));
+	*y = ((*x + *y) * sin(0.8) - (z / 2));
 }
 
 void	error_print(char *e_string)

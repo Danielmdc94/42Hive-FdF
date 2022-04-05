@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 18:08:41 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/05 20:48:54 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,19 +110,10 @@ void	draw_map(t_data *data)
 }
 
 void	offset_draw(t_data *data)
-{/*
-	if (data->map_width > data->map_height)
-	{
-		data->x_off = WIN_WIDTH / 8;
-		data->zoom = (WIN_WIDTH - 2 * data->x_off) / data->map_width;
-		data->y_off = (WIN_HEIGHT - data->map_height * data->zoom) / 2;
-	}
-	else
-	{*/
-		data->y_off = WIN_HEIGHT / 6;
-		data->zoom = (WIN_HEIGHT - 2 * data->y_off) / data->map_height;
-		data->x_off = (WIN_WIDTH - data->map_width * data->zoom) / 2;
-//	}
+{
+	data->y_off = WIN_HEIGHT / 6;
+	data->zoom = (WIN_HEIGHT - 2 * data->y_off) / data->map_height;
+	data->x_off = (WIN_WIDTH - data->map_width * data->zoom) / 2;
 }
 
 t_line	make_line(t_data *data, char *dir, int x, int y)
