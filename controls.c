@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:42:50 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/07 15:12:51 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:15:49 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	controls(t_data *data)
 {
 	mlx_hook(data->win, 3, 0, exit_fdf, data);
-	mlx_hook(data->win, 2, 0, switch_view, data);
 	mlx_hook(data->win, 2, 0, pan_view, data);
+	mlx_hook(data->win, 2, 0, switch_view, data);
 	mlx_hook(data->win, 4, 0, mouse_wheel, data);
 }
 
