@@ -6,14 +6,11 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 20:48:54 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:23:58 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	offset_draw(t_data *data);
-t_line	make_line(t_data *data, char *dir, int x, int y);
 
 void	draw(t_data *data)
 {
@@ -87,6 +84,8 @@ void	draw_map(t_data *data)
 {
 	int		x;
 	int		y;
+//	t_point	p0;
+//	t_point	p1;
 
 	x = 0;
 	y = 0;
@@ -119,20 +118,37 @@ void	offset_draw(t_data *data)
 t_line	make_line(t_data *data, char *dir, int x, int y)
 {
 	t_line	line;
+	int		temp_x;
+	int		temp_y;
 
+	temp_x = x;
+	temp_y = y;
 	if (ft_strcmp(dir, "horizontal") == 0)
 	{
-		line.x0 = (x * data->zoom) + data->x_off;
-		line.y0 = (y * data->zoom) + data->y_off;
-		line.x1 = (x * data->zoom) + data->x_off + data->zoom;
-		line.y1 = (y * data->zoom) + data->y_off;
+		temp_x = (x * data->zoom) + data->x_off;
+		temp_y = (y * data->zoom) + data->y_off;
+		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		line.x0 = temp_x;
+		line.y0 = temp_y;
+		temp_x = (x * data->zoom) + data->x_off + data->zoom;
+		temp_y = (y * data->zoom) + data->y_off;
+		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		line.x1 = temp_x;
+		line.y1 = temp_y;
+
 	}
 	if (ft_strcmp(dir, "vertical") == 0)
 	{
-		line.x0 = (x * data->zoom) + data->x_off;
-		line.y0 = (y * data->zoom) + data->y_off;
-		line.x1 = (x * data->zoom) + data->x_off;
-		line.y1 = (y * data->zoom) + data->y_off + data->zoom;
+		temp_x = (x * data->zoom) + data->x_off;
+		temp_y = (y * data->zoom) + data->y_off;
+		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		line.x0 = temp_x;
+		line.y0 = temp_y;
+		temp_x = (x * data->zoom) + data->x_off;
+		temp_y = (y * data->zoom) + data->y_off + data->zoom;
+		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		line.x1 = temp_x;
+		line.y1 = temp_y;
 	}
 	return (line);
 }

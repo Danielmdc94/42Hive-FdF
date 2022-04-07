@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 20:47:19 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:28:22 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_point{
 
 /*-------MAIN-------*/
 void	error_print(char *e_string);
-void	isometric(int *x, int *y, float z, t_data *data);
+void	isometric(int *x, int *y, int z, t_data *data);
 
 /*-----CONTROLS-----*/
 void	controls(t_data *data);
@@ -88,6 +88,7 @@ int		draw_line(t_line line, t_data *data, int color0, int color1);
 void	draw_map(t_data *data);
 void	img_pixel_put(t_data *data, int x, int y, int color);
 void	draw(t_data *data);
+t_line	make_line(t_data *data, char *dir, int x, int y);
 
 /*---COLOR MANAGER--*/
 int		rgb_to_hex(int red, int blue, int green);
