@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/07 13:23:58 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:41:18 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ void	draw_map(t_data *data)
 {
 	int		x;
 	int		y;
-//	t_point	p0;
-//	t_point	p1;
 
 	x = 0;
 	y = 0;
@@ -127,26 +125,29 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 	{
 		temp_x = (x * data->zoom) + data->x_off;
 		temp_y = (y * data->zoom) + data->y_off;
-		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		if (data->view == 1)
+			isometric(&temp_x, &temp_y, data->matrix[y][x], data);
 		line.x0 = temp_x;
 		line.y0 = temp_y;
 		temp_x = (x * data->zoom) + data->x_off + data->zoom;
 		temp_y = (y * data->zoom) + data->y_off;
-		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		if (data->view == 1)
+			isometric(&temp_x, &temp_y, data->matrix[y][x + 1], data);
 		line.x1 = temp_x;
 		line.y1 = temp_y;
-
 	}
 	if (ft_strcmp(dir, "vertical") == 0)
 	{
 		temp_x = (x * data->zoom) + data->x_off;
 		temp_y = (y * data->zoom) + data->y_off;
-		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		if (data->view == 1)
+			isometric(&temp_x, &temp_y, data->matrix[y][x], data);
 		line.x0 = temp_x;
 		line.y0 = temp_y;
 		temp_x = (x * data->zoom) + data->x_off;
 		temp_y = (y * data->zoom) + data->y_off + data->zoom;
-		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		if (data->view == 1)
+			isometric(&temp_x, &temp_y, data->matrix[y + 1][x], data);
 		line.x1 = temp_x;
 		line.y1 = temp_y;
 	}

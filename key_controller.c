@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 18:42:42 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:09:36 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,33 @@ int	pan_view(int key, t_data *data)
 	draw(data);
 	return (1);
 }
+
+int	switch_view(int key, t_data *data)
+{
+	if (key == 14)
+	{
+		if (data->zoom == 1)
+			data->zoom = 2;
+		data->view++;
+		draw(data);
+	}
+	if (key == 12)
+	{
+		data->view--;
+		draw(data);
+	}
+	if (data->view > 1)
+	{
+		data->view = 0;
+		draw(data);
+	}
+	if (data->view < 0)
+	{
+		if (data->zoom == 1)
+			data->zoom = 2;
+		data->view = 1;
+		draw(data);
+	}
+	return (1);
+}
+

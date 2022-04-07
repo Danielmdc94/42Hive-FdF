@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/07 13:28:22 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:46:25 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data{
 	int		zoom;
 	int		x_off;
 	int		y_off;
+	int		view;
 }				t_data;
 
 /*-------LINE------*/
@@ -73,6 +74,7 @@ void	isometric(int *x, int *y, int z, t_data *data);
 void	controls(t_data *data);
 void	display_controls(t_data *data);
 void	draw_ui(t_data *data);
+void	display_info(t_data *data);
 
 /*-MOUSE CONTROLLER-*/
 int		mouse_controller(int button, int x, int y, t_data *data);
@@ -81,6 +83,7 @@ int		mouse_wheel(int button, int x, int y, t_data *data);
 /*--KEY CONTROLLER--*/
 int		exit_fdf(int key, t_data *data);
 int		pan_view(int key, t_data *data);
+int		switch_view(int key, t_data *data);
 
 /*---DRAW MANAGER---*/
 void	offset_draw(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:42:50 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/05 20:55:08 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:12:51 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	controls(t_data *data)
 {
-	mlx_hook(data->win, 3, (1L << 0), exit_fdf, data);
-	mlx_hook(data->win, 2, (1L << 1), pan_view, data);
-	mlx_hook(data->win, 4, (1L << 2), mouse_wheel, data);
+	mlx_hook(data->win, 3, 0, exit_fdf, data);
+	mlx_hook(data->win, 2, 0, switch_view, data);
+	mlx_hook(data->win, 2, 0, pan_view, data);
+	mlx_hook(data->win, 4, 0, mouse_wheel, data);
 }
 
 void	display_controls(t_data *data)
@@ -45,6 +46,17 @@ void	display_controls(t_data *data)
 		"WHEEL UP - Zoom in");
 	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 35, 0xEAEAEA,
 		"WHEEL DOWN - Zoom out");
+	display_info(data);
+}
+
+void	display_info(t_data *data)
+{
+	if (data->view == 0)
+		mlx_string_put(data->mlx, data->win, 25, 70, 0xf6f095,
+			"TOP-DOWN");
+	if (data->view == 1)
+		mlx_string_put(data->mlx, data->win, 25, 70, 0xf6f095,
+			"ISOMETRIC");
 }
 
 void	draw_ui(t_data *data)
