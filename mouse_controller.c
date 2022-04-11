@@ -6,22 +6,22 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/07 15:04:53 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:04:55 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	mouse_wheel(int button, int x, int y, t_data *data)
+int	mouse_wheel(int key, int x, int y, t_data *data)
 {
-	if (button == 4)
+	if (key == 4)
 	{
 		data->zoom += 1;
 		data->x_off -= data->map_width / 2;
 		data->y_off -= data->map_height / 2;
 		draw(data);
 	}
-	if (button == 5)
+	if (key == 5)
 	{
 		if (data->zoom > 1)
 		{

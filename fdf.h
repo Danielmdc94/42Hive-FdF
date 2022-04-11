@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/07 14:46:25 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:04:21 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void	isometric(int *x, int *y, int z, t_data *data);
 
 /*-----CONTROLS-----*/
 void	controls(t_data *data);
+int		on_keydown(int key, t_data *data);
+int		on_keyup(int key, t_data *data);
+int		on_mousedown(int key, int x, int y, t_data *data);
 void	display_controls(t_data *data);
 void	draw_ui(t_data *data);
 void	display_info(t_data *data);

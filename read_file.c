@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:04:10 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/04 17:35:21 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:35:50 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ void	fill_line(t_data *data, char **line_arr, int y)
 				data->color_matrix[y][x] = BLUE;
 			choose_color(data, x, y);
 		}
-		free(line_arr[x]);
 		i = 0;
 		x++;
 	}
