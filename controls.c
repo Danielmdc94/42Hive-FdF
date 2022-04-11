@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:42:50 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 12:05:00 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:54:55 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	on_keydown(int key, t_data *data)
 {
 	pan_view(key, data);
 	switch_view(key, data);
+	change_height(key, data);
+	change_angle(key, data);
 	return (1);
 }
 
@@ -35,6 +37,7 @@ int	on_keyup(int key, t_data *data)
 int	on_mousedown(int key, int x, int y, t_data *data)
 {
 	mouse_wheel(key, x, y, data);
+//	mouse_controller(key, x, y, data);
 	return (1);
 }
 
@@ -49,9 +52,9 @@ void	display_controls(t_data *data)
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 85, 0xEAEAEA,
 		"SPACE - Reset view");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 60, 0xEAEAEA,
-		"PH - Placeholder");
+		"V - Switch projection view");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 35, 0xEAEAEA,
-		"PH - Placeholder");
+		"ESC - Quit program");
 	mlx_string_put(data->mlx, data->win, 525, WIN_HEIGHT - 160, 0xf6f095,
 		"MOUSE:");
 	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 135, 0xEAEAEA,

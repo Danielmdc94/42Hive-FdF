@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:36:05 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/04 16:02:27 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:19:56 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	color_gradient(int color0, int color1, int steps)
 	red = red_gradient(color0, color1, steps);
 	green = green_gradient(color0, color1, steps);
 	blue = blue_gradient(color0, color1, steps);
-	return (rgb_to_hex(red, green, blue));
+	return (rgb_to_int(red, green, blue));
 }
 
 static int	red_gradient(int color0, int color1, int steps)
@@ -34,8 +34,10 @@ static int	red_gradient(int color0, int color1, int steps)
 	int	red0;
 	int	red1;
 
-	red0 = hex_to_red(color0);
-	red1 = hex_to_red(color1);
+	if (steps < 1)
+			steps = 1;
+	red0 = int_to_red(color0);
+	red1 = int_to_red(color1);
 	if (red0 == red1)
 		red = red0;
 	if (red0 < red1)
@@ -51,8 +53,10 @@ static int	green_gradient(int color0, int color1, int steps)
 	int	green0;
 	int	green1;
 
-	green0 = hex_to_green(color0);
-	green1 = hex_to_green(color1);
+	if (steps < 1)
+			steps = 1;
+	green0 = int_to_green(color0);
+	green1 = int_to_green(color1);
 	if (green0 == green1)
 		green = green0;
 	if (green0 < green1)
@@ -68,8 +72,10 @@ static int	blue_gradient(int color0, int color1, int steps)
 	int	blue0;
 	int	blue1;
 
-	blue0 = hex_to_blue(color0);
-	blue1 = hex_to_blue(color1);
+	if (steps < 1)
+			steps = 1;
+	blue0 = int_to_blue(color0);
+	blue1 = int_to_blue(color1);
 	if (blue0 == blue1)
 		blue = blue0;
 	if (blue0 < blue1)

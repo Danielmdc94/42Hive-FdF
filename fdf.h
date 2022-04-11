@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 12:04:21 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:53:10 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ typedef struct s_data{
 	char	*img_addr;
 	int		map_width;
 	int		map_height;
-	int		**matrix;
+	float		**matrix;
 	int		**color_matrix;
 	int		zoom;
 	int		x_off;
 	int		y_off;
+	float	iso_angle;
 	int		view;
 }				t_data;
 
@@ -87,7 +88,8 @@ int		mouse_wheel(int button, int x, int y, t_data *data);
 int		exit_fdf(int key, t_data *data);
 int		pan_view(int key, t_data *data);
 int		switch_view(int key, t_data *data);
-
+int		change_height(int key, t_data *data);
+int		change_angle(int key, t_data *data);
 /*---DRAW MANAGER---*/
 void	offset_draw(t_data *data);
 int		draw_line(t_line line, t_data *data, int color0, int color1);
@@ -97,10 +99,10 @@ void	draw(t_data *data);
 t_line	make_line(t_data *data, char *dir, int x, int y);
 
 /*---COLOR MANAGER--*/
-int		rgb_to_hex(int red, int blue, int green);
-int		hex_to_red(int hex);
-int		hex_to_green(int hex);
-int		hex_to_blue(int hex);
+int		rgb_to_int(int red, int blue, int green);
+int		int_to_red(int color);
+int		int_to_green(int color);
+int		int_to_blue(int color);
 void	choose_color(t_data *data, int x, int y);
 
 /*--COLOR GRADIENT--*/

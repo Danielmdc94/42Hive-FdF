@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:04:10 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 11:35:50 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 14:21:19 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	create_matrix(t_data *data)
 	int	i;
 
 	i = 0;
-	data->matrix = (int **)ft_memalloc((data->map_height + 1) * sizeof(int *));
+	data->matrix = (float **)ft_memalloc((data->map_height + 1) * sizeof(int *));
 	if (!data->matrix)
 		error_print("Error (3): Failed to allocate matrix");
 	data->matrix[data->map_height] = NULL;
@@ -79,7 +79,7 @@ void	create_matrix(t_data *data)
 	data->color_matrix[data->map_height] = NULL;
 	while (i <= data->map_height)
 	{
-		data->matrix[i] = (int *)ft_memalloc((data->map_width) * sizeof(int));
+		data->matrix[i] = (float *)ft_memalloc((data->map_width) * sizeof(int));
 		if (!data->matrix[i])
 			error_print("Error (3): Failed to allocate matrix");
 		data->color_matrix[i]
