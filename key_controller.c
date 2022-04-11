@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 19:36:44 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/11 19:44:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ int	switch_view(int key, t_data *data)
 {
 	if (key == 9)
 	{
-		if (data->zoom <= 3 && data->view == 0)
-			data->zoom = 3;
+		if (data->zoom <= 1 && data->view == 0)
+			data->zoom = 2;
 		data->view++;
 		if (data->view > 1)
 			data->view = 0;
 		if (data->view == 1)
-			data->x_off *= 2;
+			data->x_off += data->zoom * data->map_width / 2;
 		if (data->view == 0)
-			data->x_off /= 2;
+			data->x_off -= data->zoom * data->map_width / 2;
 		data->iso_angle = 0.5;
 		draw(data);
 	}
