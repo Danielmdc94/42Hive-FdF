@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/12 14:43:11 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:27:56 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	draw(t_data *data)
 {
-//	int		img_width = 643;
-//	int		img_height = 743;
 	mlx_clear_window(data->mlx, data->win);
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
-//	data->img = mlx_xpm_file_to_image(data->mlx, "./map_files/test_img.XPM", &img_width, &img_height);
 	if (!data->img)
 		error_print("Error(4): Image not allocated");
 	data->img_addr = mlx_get_data_addr(data->img, &data->px_bits,
@@ -127,27 +124,23 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 
 	temp_x = x;
 	temp_y = y;
-		temp_x = (x * data->zoom);
-		temp_y = (y * data->zoom);
-		if (data->view == 1)
-		{
-			rotate(&temp_x, &temp_y, data);
-			isometric(&temp_x, &temp_y, data->matrix[y][x], data);
-		}
-		line.x0 = temp_x + data->x_off;
-		line.y0 = temp_y + data->y_off;
-		temp_x = (x * data->zoom);
-		temp_y = (y * data->zoom);
-		if (ft_strcmp(dir, "horizontal") == 0)
-			temp_x += data->zoom;
-		if (ft_strcmp(dir, "vertical") == 0)
-			temp_y += data->zoom;
-		if (data->view == 1)
-		{
-			rotate(&temp_x, &temp_y, data);
-			isometric(&temp_x, &temp_y, data->matrix[y][x + 1], data);
-		}
-		line.x1 = temp_x + data->x_off;
-		line.y1 = temp_y + data->y_off;
+	temp_x = (x * data->zoom);
+	temp_y = (y * data->zoom);
+	rotate(&temp_x, &temp_y, data);
+	if (data->view == 1)
+		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+	line.x0 = temp_x + data->x_off;
+	line.y0 = temp_y + data->y_off;
+	temp_x = (x * data->zoom);
+	temp_y = (y * data->zoom);
+	if (ft_strcmp(dir, "horizontal") == 0)
+		temp_x += data->zoom;
+	if (ft_strcmp(dir, "vertical") == 0)
+		temp_y += data->zoom;
+	rotate(&temp_x, &temp_y, data);
+	if (data->view == 1)
+		isometric(&temp_x, &temp_y, data->matrix[y][x + 1], data);
+	line.x1 = temp_x + data->x_off;
+	line.y1 = temp_y + data->y_off;
 	return (line);
 }

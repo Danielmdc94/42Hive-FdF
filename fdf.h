@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/12 12:59:56 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:32:24 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_data{
 	char	*img_addr;
 	int		map_width;
 	int		map_height;
-	float		**matrix;
+	float	**matrix;
 	int		**color_matrix;
 	int		zoom;
 	int		x_off;
