@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 18:59:36 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:33:12 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ void	draw(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img)
+		error_print("Error(4): Image not allocated");
+	data->img_addr = mlx_get_data_addr(data->img, &data->px_bits,
+			&data->line_bytes, &data->endian);
+	if (!data->img_addr)
+		error_print("Error(4): Image address not allocated");
 	draw_ui(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	display_controls(data);
@@ -43,12 +49,12 @@ void	img_pixel_put(t_data *data, int x, int y, int color)
 
 	if (data->px_bits != 32)
 		color = mlx_get_color_value(data->mlx, color);
-	if (x < WIN_WIDTH && y < WIN_HEIGHT && x > 0 && y > 0)
+	if (x < WIN_WIDTH && y < WIN_HEIGHT && x >= 0 && y >= 0)
 		pixel = data->img_addr + (y * data->line_bytes)
 			+ (x * (data->px_bits / 8));
 	if (pixel == NULL)
 		error_print("Error(6): Bad allocated pixel");
-	*(unsigned int *)pixel = color;
+	*(int *)pixel = color;
 }
 
 int	draw_line(t_line line, t_data *data, int c0, int c1)
@@ -126,13 +132,19 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 		temp_x = (x * data->zoom);// + data->x_off;
 		temp_y = (y * data->zoom);// + data->y_off;
 		if (data->view == 1)
+		{
+			rotate(&temp_x, &temp_y, data);
 			isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		}
 		line.x0 = temp_x + data->x_off;
 		line.y0 = temp_y + data->y_off;
 		temp_x = (x * data->zoom) + data->zoom;// + data->x_off;
 		temp_y = (y * data->zoom);// + data->y_off;
 		if (data->view == 1)
+		{
+			rotate(&temp_x, &temp_y, data);
 			isometric(&temp_x, &temp_y, data->matrix[y][x + 1], data);
+		}
 		line.x1 = temp_x + data->x_off;
 		line.y1 = temp_y + data->y_off;
 	}
@@ -141,13 +153,19 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 		temp_x = (x * data->zoom);// + data->x_off;
 		temp_y = (y * data->zoom);// + data->y_off;
 		if (data->view == 1)
+		{
+			rotate(&temp_x, &temp_y, data);
 			isometric(&temp_x, &temp_y, data->matrix[y][x], data);
+		}
 		line.x0 = temp_x + data->x_off;
 		line.y0 = temp_y + data->y_off;
 		temp_x = (x * data->zoom);// + data->x_off;
 		temp_y = (y * data->zoom) + data->zoom;// + data->y_off;
 		if (data->view == 1)
+		{
+			rotate(&temp_x, &temp_y, data);
 			isometric(&temp_x, &temp_y, data->matrix[y + 1][x], data);
+		}
 		line.x1 = temp_x + data->x_off;
 		line.y1 = temp_y + data->y_off;
 	}

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 19:44:11 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:25:56 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	pan_view(int key, t_data *data)
 	ft_putnbr(key);
 	ft_putchar('\n');
 	if (key == 13)
-		data->y_off += data->map_height;
+		data->y_off += data->zoom + 5;
 	if (key == 0)
-		data->x_off += data->map_height;
+		data->x_off += data->zoom + 5;
 	if (key == 1)
-		data->y_off -= data->map_height;
+		data->y_off -= data->zoom + 5;
 	if (key == 2)
-		data->x_off -= data->map_height;
+		data->x_off -= data->zoom + 5;
 	if (key == 49)
 	{
 		data->iso_angle = 0.5;
@@ -96,22 +96,27 @@ int	change_height(int key, t_data *data)
 
 int	change_angle(int key, t_data *data)
 {
-	if (key == 12 && data->view == 1)
+	if (key == 17 && data->view == 1 && data->iso_angle >= 0)
 	{
-		if (data->iso_angle >= 0.05)
-		{
 			data->iso_angle -= 0.05;
 			data->y_off += 20;
-
-		}
 	}
-	if (key == 14 && data->view == 1)
+	if (key == 5 && data->view == 1 && data->iso_angle < 1)
 	{
-		if (data->iso_angle < 0.95)
-		{
-			data->iso_angle += 0.05;
-			data->y_off -= 20;
-		}
+		data->iso_angle += 0.05;
+		data->y_off -= 20;
+	}
+	if (key == 12 && data->view == 1 && data->rot_angle > -0.4)
+	{
+		data->rot_angle -= 0.05;
+		data->x_off -= 40;
+		data->y_off -= 10;
+	}
+	if (key == 14 && data->view == 1 && data->rot_angle < 0.2)
+	{
+		data->rot_angle += 0.05;
+		data->x_off += 40;
+		data->y_off += 10;
 	}
 	draw(data);
 	return (1);

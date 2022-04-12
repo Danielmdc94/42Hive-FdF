@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 17:53:10 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/12 12:59:56 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data{
 	int		x_off;
 	int		y_off;
 	float	iso_angle;
+	float	rot_angle;
 	int		view;
 }				t_data;
 
@@ -69,6 +70,7 @@ typedef struct s_point{
 
 /*-------MAIN-------*/
 void	error_print(char *e_string);
+void	rotate(int *x, int *y, t_data *data);
 void	isometric(int *x, int *y, int z, t_data *data);
 
 /*-----CONTROLS-----*/
