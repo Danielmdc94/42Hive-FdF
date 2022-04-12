@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/12 14:35:06 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:43:42 by dpalacio         ###   ########.fr       */
 /*                                                                           */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	rotate(int *x, int *y, t_data *data)
 void	isometric(int *x, int *y, int z, t_data *data)
 {
 	*x = ((*x - *y) * cos(data->iso_angle));
-	*y = ((*x + *y) * sin(data->iso_angle) - (z/2));
+	*y = ((*x + *y) * sin(data->iso_angle) - (z/4));
 }
 
 void	error_print(char *e_string)

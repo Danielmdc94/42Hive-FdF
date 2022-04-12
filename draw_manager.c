@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/12 14:33:12 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:43:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,8 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 
 	temp_x = x;
 	temp_y = y;
-	if (ft_strcmp(dir, "horizontal") == 0)
-	{
-		temp_x = (x * data->zoom);// + data->x_off;
-		temp_y = (y * data->zoom);// + data->y_off;
+		temp_x = (x * data->zoom);
+		temp_y = (y * data->zoom);
 		if (data->view == 1)
 		{
 			rotate(&temp_x, &temp_y, data);
@@ -138,8 +136,12 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 		}
 		line.x0 = temp_x + data->x_off;
 		line.y0 = temp_y + data->y_off;
-		temp_x = (x * data->zoom) + data->zoom;// + data->x_off;
-		temp_y = (y * data->zoom);// + data->y_off;
+		temp_x = (x * data->zoom);
+		temp_y = (y * data->zoom);
+		if (ft_strcmp(dir, "horizontal") == 0)
+			temp_x += data->zoom;
+		if (ft_strcmp(dir, "vertical") == 0)
+			temp_y += data->zoom;
 		if (data->view == 1)
 		{
 			rotate(&temp_x, &temp_y, data);
@@ -147,27 +149,5 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 		}
 		line.x1 = temp_x + data->x_off;
 		line.y1 = temp_y + data->y_off;
-	}
-	if (ft_strcmp(dir, "vertical") == 0)
-	{
-		temp_x = (x * data->zoom);// + data->x_off;
-		temp_y = (y * data->zoom);// + data->y_off;
-		if (data->view == 1)
-		{
-			rotate(&temp_x, &temp_y, data);
-			isometric(&temp_x, &temp_y, data->matrix[y][x], data);
-		}
-		line.x0 = temp_x + data->x_off;
-		line.y0 = temp_y + data->y_off;
-		temp_x = (x * data->zoom);// + data->x_off;
-		temp_y = (y * data->zoom) + data->zoom;// + data->y_off;
-		if (data->view == 1)
-		{
-			rotate(&temp_x, &temp_y, data);
-			isometric(&temp_x, &temp_y, data->matrix[y + 1][x], data);
-		}
-		line.x1 = temp_x + data->x_off;
-		line.y1 = temp_y + data->y_off;
-	}
 	return (line);
 }
