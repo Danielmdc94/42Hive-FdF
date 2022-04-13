@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:42:50 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/12 15:22:53 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:09:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	on_keyup(int key, t_data *data)
 int	on_mousedown(int key, int x, int y, t_data *data)
 {
 	mouse_wheel(key, x, y, data);
+	left_click(key, x, y, data);
+	right_click(key, x, y, data);
 	return (1);
 }
 

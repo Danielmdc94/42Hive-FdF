@@ -6,45 +6,19 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:43:09 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 13:50:40 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:45:46 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	rgb_to_int(int red, int green, int blue)
-{
-	int	color;
-
-	color = blue + (green << 8) + (red << 16);
-	return (color);
-}
-
-int	int_to_red(int color)
-{
-	int	red;
-
-	red = color >> 16;
-	return (red);
-}
-
-int	int_to_green(int color)
-{
-	int	green;
-
-	green = (color & 0x00FF00) >> 8;
-	return (green);
-}
-
-int	int_to_blue(int color)
-{
-	int	blue;
-
-	blue = (color & 0x0000FF);
-	return (blue);
-}
-
 void	choose_color(t_data *data, int x, int y)
+{
+	if (data->color_scheme == 1)
+		geo_color(data, x, y);
+}
+
+void	geo_color(t_data *data, int x, int y)
 {
 	if (data->matrix[y][x] <= -100)
 		data->color_matrix[y][x] = 0x02445A;

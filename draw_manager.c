@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/12 15:27:56 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:29:16 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,13 @@ void	img_pixel_put(t_data *data, int x, int y, int color)
 	if (data->px_bits != 32)
 		color = mlx_get_color_value(data->mlx, color);
 	if (x < WIN_WIDTH && y < WIN_HEIGHT && x >= 0 && y >= 0)
+	{
 		pixel = data->img_addr + (y * data->line_bytes)
 			+ (x * (data->px_bits / 8));
-	if (pixel == NULL)
-		error_print("Error(6): Bad allocated pixel");
-	*(int *)pixel = color;
+		if (pixel == NULL)
+			error_print("Error(6): Bad allocated pixel");
+		*(unsigned int *)pixel = color;
+	}
 }
 
 int	draw_line(t_line line, t_data *data, int c0, int c1)
@@ -134,12 +136,19 @@ t_line	make_line(t_data *data, char *dir, int x, int y)
 	temp_x = (x * data->zoom);
 	temp_y = (y * data->zoom);
 	if (ft_strcmp(dir, "horizontal") == 0)
+	{
 		temp_x += data->zoom;
+		rotate(&temp_x, &temp_y, data);
+		if (data->view == 1)
+			isometric(&temp_x, &temp_y, data->matrix[y][x + 1], data);
+	}
 	if (ft_strcmp(dir, "vertical") == 0)
+	{
 		temp_y += data->zoom;
-	rotate(&temp_x, &temp_y, data);
-	if (data->view == 1)
-		isometric(&temp_x, &temp_y, data->matrix[y][x + 1], data);
+		rotate(&temp_x, &temp_y, data);
+		if (data->view == 1)
+			isometric(&temp_x, &temp_y, data->matrix[y + 1][x], data);
+	}
 	line.x1 = temp_x + data->x_off;
 	line.y1 = temp_y + data->y_off;
 	return (line);

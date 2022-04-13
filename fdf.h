@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/12 15:32:24 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:45:43 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_data{
 	int		map_height;
 	float	**matrix;
 	int		**color_matrix;
+	int		color_scheme;
 	int		zoom;
 	int		x_off;
 	int		y_off;
@@ -73,6 +74,9 @@ void	error_print(char *e_string);
 void	rotate(int *x, int *y, t_data *data);
 void	isometric(int *x, int *y, int z, t_data *data);
 
+/*-----READ FILE----*/
+void	read_file(char *file, t_data *data);
+
 /*-----CONTROLS-----*/
 void	controls(t_data *data);
 int		on_keydown(int key, t_data *data);
@@ -83,8 +87,9 @@ void	draw_ui(t_data *data);
 void	display_info(t_data *data);
 
 /*-MOUSE CONTROLLER-*/
-int		mouse_controller(int button, int x, int y, t_data *data);
 int		mouse_wheel(int button, int x, int y, t_data *data);
+int		left_click(int key, int x, int y, t_data *data);
+int		right_click(int key, int x, int y, t_data *data);
 
 /*--KEY CONTROLLER--*/
 int		exit_fdf(int key, t_data *data);
@@ -92,6 +97,7 @@ int		pan_view(int key, t_data *data);
 int		switch_view(int key, t_data *data);
 int		change_height(int key, t_data *data);
 int		change_angle(int key, t_data *data);
+
 /*---DRAW MANAGER---*/
 void	offset_draw(t_data *data);
 int		draw_line(t_line line, t_data *data, int color0, int color1);
@@ -101,16 +107,16 @@ void	draw(t_data *data);
 t_line	make_line(t_data *data, char *dir, int x, int y);
 
 /*---COLOR MANAGER--*/
-int		rgb_to_int(int red, int blue, int green);
-int		int_to_red(int color);
-int		int_to_green(int color);
-int		int_to_blue(int color);
 void	choose_color(t_data *data, int x, int y);
+void	geo_color(t_data *data, int x, int y);
 
 /*--COLOR GRADIENT--*/
 int		color_gradient(int c0, int c1, int steps);
 
-/*-----READ FILE----*/
-void	read_file(char *file, t_data *data);
+/*-COLOR CONVERSION-*/
+int		rgb_to_int(int red, int blue, int green);
+int		int_to_red(int color);
+int		int_to_green(int color);
+int		int_to_blue(int color);
 
 #endif
