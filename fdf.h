@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/13 15:45:43 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:23:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 /*----RESOLUTION----*/
 # define WIN_WIDTH	1920
 # define WIN_HEIGHT	1080
+
 /*------COLORS------*/
 # define WHITE		0xFFFFFF
 # define RED		0xFF0000
@@ -77,14 +78,17 @@ void	isometric(int *x, int *y, int z, t_data *data);
 /*-----READ FILE----*/
 void	read_file(char *file, t_data *data);
 
+/*----UI DISPLAY----*/
+void	display_controls(t_data *data);
+void	draw_ui(t_data *data);
+void	display_info(t_data *data);
+
 /*-----CONTROLS-----*/
 void	controls(t_data *data);
 int		on_keydown(int key, t_data *data);
 int		on_keyup(int key, t_data *data);
 int		on_mousedown(int key, int x, int y, t_data *data);
-void	display_controls(t_data *data);
-void	draw_ui(t_data *data);
-void	display_info(t_data *data);
+int		auto_rot(t_data *data);
 
 /*-MOUSE CONTROLLER-*/
 int		mouse_wheel(int button, int x, int y, t_data *data);
@@ -101,14 +105,15 @@ int		change_angle(int key, t_data *data);
 /*---DRAW MANAGER---*/
 void	offset_draw(t_data *data);
 int		draw_line(t_line line, t_data *data, int color0, int color1);
-void	draw_map(t_data *data);
 void	img_pixel_put(t_data *data, int x, int y, int color);
 void	draw(t_data *data);
 t_line	make_line(t_data *data, char *dir, int x, int y);
 
+/*---DRAW MANAGER---*/
+void	draw_map(t_data *data);
+
 /*---COLOR MANAGER--*/
 void	choose_color(t_data *data, int x, int y);
-void	geo_color(t_data *data, int x, int y);
 
 /*--COLOR GRADIENT--*/
 int		color_gradient(int c0, int c1, int steps);

@@ -6,11 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:43:09 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/13 15:45:46 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:39:26 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	geo_color(t_data *data, int x, int y);
 
 void	choose_color(t_data *data, int x, int y)
 {
@@ -18,7 +20,7 @@ void	choose_color(t_data *data, int x, int y)
 		geo_color(data, x, y);
 }
 
-void	geo_color(t_data *data, int x, int y)
+static void	geo_color(t_data *data, int x, int y)
 {
 	if (data->matrix[y][x] <= -100)
 		data->color_matrix[y][x] = 0x02445A;

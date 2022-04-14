@@ -6,7 +6,7 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 12:22:28 by dpalacio          #+#    #+#              #
-#    Updated: 2022/04/13 15:29:10 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/04/14 12:03:15 by dpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FW = -framework OpenGL -framework AppKit
 
 SRC = main.c mouse_controller.c key_controller.c draw_manager.c \
 	read_file.c color_gradient.c color_manager.c controls.c \
-	color_conversion.c
+	color_conversion.c ui_display.c draw_map.c
 
 OBJ = $(SRC:.c=.o)
 
