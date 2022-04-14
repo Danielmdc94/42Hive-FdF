@@ -6,7 +6,7 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 12:22:28 by dpalacio          #+#    #+#              #
-#    Updated: 2022/04/14 12:03:15 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/04/14 14:32:16 by dpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME):
 	@make -C libft/ re
-	$(CC) $(INCLUDES) $(SRC) $(LIB) $(FW) -o $(NAME) -flto -g
+	$(CC) $(INCLUDES) $(SRC) $(LIB) $(FW) -o $(NAME) -flto
 
 clean:
 	@make -C libft/ clean

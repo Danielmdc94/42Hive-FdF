@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 13:39:43 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:32:04 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 int	exit_fdf(int key, t_data *data)
 {
+	int	y;
+
+	y = 0;
 	if (key == 53)
 	{
-//		system("leaks fdf");
+		if (data->color_matrix && data->matrix)
+		{
+			while (y <= data->map_height)
+			{
+				free(data->color_matrix[y]);
+				free(data->matrix[y]);
+				y++;
+			}
+			free(data->color_matrix);
+			free(data->matrix);
+		}
 		exit(0);
 	}
 	return (1);
@@ -34,10 +47,10 @@ int	pan_view(int key, t_data *data)
 		data->x_off -= data->zoom + 5;
 	if (key == 49)
 	{
-		data->iso_angle = 0.5;
+		data->iso_angle = 0.9;
 		offset_draw(data);
 		if (data->view == 1)
-			data->x_off *= 2;
+			data->x_off += data->zoom * data->map_width / 2;
 	}
 	draw(data);
 	return (1);

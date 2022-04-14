@@ -6,29 +6,16 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 13:38:06 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:32:48 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate(int *x, int *y, t_data *data)
-{
-	*x = *x * cos(data->rot_angle) - *y * sin(data->rot_angle);
-	*y = *y * cos(data->rot_angle) + *x * sin(data->rot_angle);
-}
-
-void	isometric(int *x, int *y, int z, t_data *data)
-{
-	*x = ((*x - *y) * cos(data->iso_angle));
-	*y = ((*x + *y) * sin(data->iso_angle) - (z / 4));
-}
-
-void	error_print(char *e_string)
+void	error_print(char *e_string, t_data *data)
 {
 	ft_putendl(e_string);
-	system("leaks fdf");
-	exit(1);
+	exit_fdf(53, data);
 }
 
 int	main(int argc, char **argv)
@@ -36,7 +23,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-		error_print("Usage: ./fdf <map_file>");
+		error_print("Usage: ./fdf <map_file>", &data);
 	data.color_scheme = 1;
 	read_file(argv[1], &data);
 	data.mlx = mlx_init();
@@ -47,6 +34,5 @@ int	main(int argc, char **argv)
 	offset_draw(&data);
 	draw(&data);
 	controls(&data);
-	ft_putnbr(data.color_scheme);
 	mlx_loop(data.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 13:23:11 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:26:57 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ typedef struct s_point{
 }				t_point;
 
 /*-------MAIN-------*/
-void	error_print(char *e_string);
-void	rotate(int *x, int *y, t_data *data);
-void	isometric(int *x, int *y, int z, t_data *data);
+void	error_print(char *e_string, t_data *data);
 
 /*-----READ FILE----*/
 void	read_file(char *file, t_data *data);
@@ -111,6 +109,8 @@ t_line	make_line(t_data *data, char *dir, int x, int y);
 
 /*---DRAW MANAGER---*/
 void	draw_map(t_data *data);
+void	rotate(int *x, int *y, t_data *data);
+void	isometric(int *x, int *y, int z, t_data *data);
 
 /*---COLOR MANAGER--*/
 void	choose_color(t_data *data, int x, int y);

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 12:02:56 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:16:39 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ void	draw(t_data *data)
 	mlx_clear_window(data->mlx, data->win);
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img)
-		error_print("Error(4): Image not allocated");
+		error_print("Error(4): Image not allocated", data);
 	data->img_addr = mlx_get_data_addr(data->img, &data->px_bits,
 			&data->line_bytes, &data->endian);
 	if (!data->img_addr)
-		error_print("Error(4): Image address not allocated");
+		error_print("Error(4): Image address not allocated", data);
 	draw_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img)
-		error_print("Error(4): Image not allocated");
+		error_print("Error(4): Image not allocated", data);
 	data->img_addr = mlx_get_data_addr(data->img, &data->px_bits,
 			&data->line_bytes, &data->endian);
 	if (!data->img_addr)
-		error_print("Error(4): Image address not allocated");
+		error_print("Error(4): Image address not allocated", data);
 	draw_ui(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	display_controls(data);
@@ -51,7 +51,7 @@ void	img_pixel_put(t_data *data, int x, int y, int color)
 		pixel = data->img_addr + (y * data->line_bytes)
 			+ (x * (data->px_bits / 8));
 		if (pixel == NULL)
-			error_print("Error(6): Bad allocated pixel");
+			error_print("Error(6): Bad allocated pixel", data);
 		*(unsigned int *)pixel = color;
 	}
 }

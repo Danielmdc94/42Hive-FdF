@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 13:40:06 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:27:02 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,38 +93,14 @@ static t_line	vertical_line(t_data *data, int x, int y)
 	return (line);
 }
 
-/*t_line	make_line(t_data *data, char *dir, int x, int y)
+void	rotate(int *x, int *y, t_data *data)
 {
-	t_line	line;
-	int		temp_x;
-	int		temp_y;
+	*x = *x * cos(data->rot_angle) - *y * sin(data->rot_angle);
+	*y = *y * cos(data->rot_angle) + *x * sin(data->rot_angle);
+}
 
-	temp_x = x;
-	temp_y = y;
-	temp_x = (x * data->zoom);
-	temp_y = (y * data->zoom);
-	rotate(&temp_x, &temp_y, data);
-	if (data->view == 1)
-		isometric(&temp_x, &temp_y, data->matrix[y][x], data);
-	line.x0 = temp_x + data->x_off;
-	line.y0 = temp_y + data->y_off;
-	temp_x = (x * data->zoom);
-	temp_y = (y * data->zoom);
-	if (ft_strcmp(dir, "horizontal") == 0)
-	{
-		temp_x += data->zoom;
-		rotate(&temp_x, &temp_y, data);
-		if (data->view == 1)
-			isometric(&temp_x, &temp_y, data->matrix[y][x + 1], data);
-	}
-	if (ft_strcmp(dir, "vertical") == 0)
-	{
-		temp_y += data->zoom;
-		rotate(&temp_x, &temp_y, data);
-		if (data->view == 1)
-			isometric(&temp_x, &temp_y, data->matrix[y + 1][x], data);
-	}
-	line.x1 = temp_x + data->x_off;
-	line.y1 = temp_y + data->y_off;
-	return (line);
-}*/
+void	isometric(int *x, int *y, int z, t_data *data)
+{
+	*x = ((*x - *y) * cos(data->iso_angle));
+	*y = ((*x + *y) * sin(data->iso_angle) - (z / 4));
+}

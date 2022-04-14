@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:04:10 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 12:20:07 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:40:20 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_width(char *line, t_data *data);
 void	create_matrix(t_data *data);
-void	fill_matrix(t_data *data, char *file);
+void	fill_matrix(t_data *data, int fd);
 void	fill_line(t_data *data, char **line_arr, int y);
 
 void	read_file(char *file, t_data *data)
@@ -25,15 +25,20 @@ void	read_file(char *file, t_data *data)
 	data->map_height = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error_print("Error (0): Failed to open file");
+		error_print("Error (0): Failed to open file", data);
 	while (get_next_line(fd, &line) == 1)
 	{
 		get_width(line, data);
 		data->map_height += 1;
+		free(line);
 	}
 	close(fd);
 	create_matrix(data);
-	fill_matrix(data, file);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		error_print("Error (5): Failed to open during fill_matrix()", data);
+	fill_matrix(data, fd);
+	close(fd);
 }
 
 void	get_width(char *line, t_data *data)
@@ -58,9 +63,9 @@ void	get_width(char *line, t_data *data)
 	if (data->map_height == 0)
 		data->map_width = x;
 	else if (data->map_width != x)
-		error_print("Error (1): Map is not rectangular");
+		error_print("Error (1): Map is not rectangular", data);
 	if (data->map_width == 0)
-		error_print("Error (2): Empty file");
+		error_print("Error (2): Empty file", data);
 }
 
 void	create_matrix(t_data *data)
@@ -71,46 +76,49 @@ void	create_matrix(t_data *data)
 	data->matrix = (float **)ft_memalloc((data->map_height + 1)
 			* sizeof(int *));
 	if (!data->matrix)
-		error_print("Error (3): Failed to allocate matrix");
+		error_print("Error (3): Failed to allocate matrix", data);
 	data->matrix[data->map_height] = NULL;
 	data->color_matrix
 		= (int **)ft_memalloc((data->map_height + 1) * sizeof(char *));
 	if (!data->color_matrix)
-		error_print("Error (4): Failed to allocate color matrix");
+		error_print("Error (4): Failed to allocate color matrix", data);
 	data->color_matrix[data->map_height] = NULL;
 	while (i <= data->map_height)
 	{
 		data->matrix[i] = (float *)ft_memalloc((data->map_width) * sizeof(int));
 		if (!data->matrix[i])
-			error_print("Error (3): Failed to allocate matrix");
+			error_print("Error (3): Failed to allocate matrix", data);
 		data->color_matrix[i]
 			= (int *)ft_memalloc((data->map_width) * sizeof(int));
 		if (!data->color_matrix[i])
-			error_print("Error (4): Failed to allocate color matrix");
+			error_print("Error (4): Failed to allocate color matrix", data);
 		i++;
 	}
 }
 
-void	fill_matrix(t_data *data, char *file)
+void	fill_matrix(t_data *data, int fd)
 {
 	char	**line_arr;
 	char	*line;
-	int		fd;
 	int		y;
+	int		i;
 
 	y = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		error_print("Error (5): Failed to open during fill_matrix()");
+	i = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
 		line_arr = ft_strsplit(line, ' ');
 		fill_line(data, line_arr, y);
-		y++;
+		while (i < data->map_width)
+		{
+			free(line_arr[i]);
+			i++;
+		}
+		i = 0;
 		free(line_arr);
 		free(line);
+		y++;
 	}
-	close(fd);
 }
 
 void	fill_line(t_data *data, char **line_arr, int y)
