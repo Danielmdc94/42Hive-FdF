@@ -6,18 +6,21 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:43:09 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 11:39:26 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/27 13:57:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static void	geo_color(t_data *data, int x, int y);
+static void	abstract_color(t_data *data, int x, int y);
 
 void	choose_color(t_data *data, int x, int y)
 {
 	if (data->color_scheme == 1)
 		geo_color(data, x, y);
+	if (data->color_scheme == 2)
+		abstract_color(data, x, y);
 }
 
 static void	geo_color(t_data *data, int x, int y)
@@ -42,6 +45,32 @@ static void	geo_color(t_data *data, int x, int y)
 		data->color_matrix[y][x] = 0xC1800F;
 	else if (data->matrix[y][x] > 60 && data->matrix[y][x] <= 100)
 		data->color_matrix[y][x] = 0x835404;
+	else
+		data->color_matrix[y][x] = WHITE;
+}
+
+static void	abstract_color(t_data *data, int x, int y)
+{
+	if (data->matrix[y][x] <= -100)
+		data->color_matrix[y][x] = 0xff5488;
+	else if (data->matrix[y][x] > -100 && data->matrix[y][x] <= -50)
+		data->color_matrix[y][x] = 0x54FCFF;
+	else if (data->matrix[y][x] > -50 && data->matrix[y][x] <= -20)
+		data->color_matrix[y][x] = 0xF3FF54;
+	else if (data->matrix[y][x] > -20 && data->matrix[y][x] <= 0)
+		data->color_matrix[y][x] = 0x75FF54;
+	else if (data->matrix[y][x] > 0 && data->matrix[y][x] <= 10)
+		data->color_matrix[y][x] = 0xB562F1;
+	else if (data->matrix[y][x] > 10 && data->matrix[y][x] <= 20)
+		data->color_matrix[y][x] = 0xF65DC1;
+	else if (data->matrix[y][x] > 20 && data->matrix[y][x] <= 40)
+		data->color_matrix[y][x] = 0x54FFB6;
+	else if (data->matrix[y][x] > 40 && data->matrix[y][x] <= 60)
+		data->color_matrix[y][x] = 0xFFBD54;
+	else if (data->matrix[y][x] > 40 && data->matrix[y][x] <= 60)
+		data->color_matrix[y][x] = 0x54AEFF;
+	else if (data->matrix[y][x] > 60 && data->matrix[y][x] <= 100)
+		data->color_matrix[y][x] = 0xF5815E;
 	else
 		data->color_matrix[y][x] = WHITE;
 }
