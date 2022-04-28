@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 15:26:57 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:19:52 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int		auto_rot(t_data *data);
 
 /*-MOUSE CONTROLLER-*/
 int		mouse_wheel(int button, int x, int y, t_data *data);
-int		left_click(int key, int x, int y, t_data *data);
 int		right_click(int key, int x, int y, t_data *data);
 
 /*--KEY CONTROLLER--*/

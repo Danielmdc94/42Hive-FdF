@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 11:00:53 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:28:49 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_print("Usage: ./fdf <map_file>", &data);
-	data.color_scheme = 1;
+	data.color_scheme = 0;
 	read_file(argv[1], &data);
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");

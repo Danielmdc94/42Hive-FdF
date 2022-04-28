@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:46:58 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 11:49:29 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 15:06:00 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	display_controls(t_data *data)
 {
+	mlx_string_put(data->mlx, data->win, WIN_WIDTH - 250, 12, WHITE,
+		"FDF by Daniel Palacio");
 	mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 160, 0xf6f095,
 		"KEYBOARD:");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 135, 0xEAEAEA,
@@ -29,14 +31,10 @@ void	display_controls(t_data *data)
 	mlx_string_put(data->mlx, data->win, 525, WIN_HEIGHT - 160, 0xf6f095,
 		"MOUSE:");
 	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 135, 0xEAEAEA,
-		"LEFT CLICK - Placeholder");
+		"RIGHT CLICK - Change color scheme");
 	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 110, 0xEAEAEA,
-		"RIGHT CLICK - Placeholder");
-	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 85, 0xEAEAEA,
-		"WHEEL CLICK - Placeholder");
-	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 60, 0xEAEAEA,
 		"WHEEL UP - Zoom in");
-	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 35, 0xEAEAEA,
+	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 85, 0xEAEAEA,
 		"WHEEL DOWN - Zoom out");
 	display_info(data);
 }
@@ -48,7 +46,19 @@ void	display_info(t_data *data)
 			"TOP-DOWN");
 	if (data->view == 1)
 		mlx_string_put(data->mlx, data->win, 25, 70, 0xf6f095,
-			"ISOMETRIC");
+			"PERSPECTIVE");
+	if (data->color_scheme == 0)
+		mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 210, 0xf6f095,
+			"BASIC");
+	if (data->color_scheme == 1)
+		mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 210, 0xf6f095,
+			"GEO");
+	if (data->color_scheme == 2)
+		mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 210, 0xf6f095,
+			"ABSTRACT");
+	if (data->color_scheme == 3)
+		mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 210, 0xf6f095,
+			"CONSTELLATION");
 }
 
 void	draw_ui(t_data *data)

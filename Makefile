@@ -6,7 +6,7 @@
 #    By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 12:22:28 by dpalacio          #+#    #+#              #
-#    Updated: 2022/04/14 14:32:16 by dpalacio         ###   ########.fr        #
+#    Updated: 2022/04/28 14:06:00 by dpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME):
 
 clean:
 	@make -C libft/ clean
-	/bin/rm -f *.o
+	/bin/rm -f $(OBJ)
 
 fclean: clean
 	@make -C libft/ fclean

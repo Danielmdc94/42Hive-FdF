@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 13:46:53 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 15:01:54 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,24 @@ int	mouse_wheel(int key, int x, int y, t_data *data)
 	return (1);
 }
 
-int	left_click(int key, int x, int y, t_data *data)
-{
-	return (1);
-}
-
 int	right_click(int key, int x, int y, t_data *data)
 {
-	int	xp;
-	int	yp;
-
-	xp = 0;
-	yp = 0;
+	x = 0;
+	y = 0;
 	if (key == 2)
 	{
-		if (data->color_scheme == 1)
-			data->color_scheme = 2;
-		else
-			data->color_scheme = 1;
-		while (yp < data->map_height)
+		data->color_scheme++;
+		if (data->color_scheme == 4)
+			data->color_scheme = 0;
+		while (y < data->map_height)
 		{
-			while (xp < data->map_width)
+			while (x < data->map_width)
 			{
-				choose_color(data, xp, yp);
-				xp++;
+				choose_color(data, x, y);
+				x++;
 			}
-			xp = 0;
-			yp++;
+			x = 0;
+			y++;
 		}
 		draw(data);
 	}
