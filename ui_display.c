@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:46:58 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 16:22:40 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:49:35 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 //Writes the control instructions in the screen
 void	display_controls(t_data *data)
 {
+	mlx_string_put(data->mlx, data->win, 25, 12, WHITE,
+		"ESC - Quit program");
 	mlx_string_put(data->mlx, data->win, WIN_WIDTH - 250, 12, WHITE,
 		"FDF by Daniel Palacio");
 	mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 160, 0xf6f095,
@@ -22,13 +24,13 @@ void	display_controls(t_data *data)
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 135, 0xEAEAEA,
 		"W, A, S, D - Pan view Up, Left, Down, Right");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 110, 0xEAEAEA,
-		"Q, E - Rotate Left, Right");
+		"Q, E, T, G - Rotate Left, Right, Down, Up");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 85, 0xEAEAEA,
 		"SPACE - Reset view");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 60, 0xEAEAEA,
 		"V - Switch projection view");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 35, 0xEAEAEA,
-		"ESC - Quit program");
+		"R, F - Change altitud Up, Down");
 	mlx_string_put(data->mlx, data->win, 525, WIN_HEIGHT - 160, 0xf6f095,
 		"MOUSE:");
 	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 135, 0xEAEAEA,
