@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 16:27:51 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:11:31 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	change_height(int key, t_data *data)
 			while (x < data->map_width)
 			{
 				if (data->matrix[y][x] != 0 && key == 15
-					&& data->matrix[y][x] < 5000)
+					&& data->matrix[y][x] < 1000)
 					data->matrix[y][x] *= 1.25;
 				else if (data->matrix[y][x] != 0 && key == 3)
 					data->matrix[y][x] /= 1.25;
