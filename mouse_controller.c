@@ -6,12 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:16:23 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 15:01:54 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:27:16 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//Zooms view in and out scrolling the mouse wheel up and down
 int	mouse_wheel(int key, int x, int y, t_data *data)
 {
 	if (key == 4)
@@ -38,6 +39,7 @@ int	mouse_wheel(int key, int x, int y, t_data *data)
 	return (1);
 }
 
+//Changes the color scheme with the mouse right click
 int	right_click(int key, int x, int y, t_data *data)
 {
 	x = 0;

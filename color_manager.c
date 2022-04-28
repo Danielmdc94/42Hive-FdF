@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:43:09 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 15:02:33 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:39:03 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	abstract_color(t_data *data, int x, int y);
 static void	basic_color(t_data *data, int x, int y);
 static void	const_color(t_data *data, int x, int y);
 
+//Sets the color scheme used on the drawing
 void	choose_color(t_data *data, int x, int y)
 {
 	if (data->color_scheme == 0)

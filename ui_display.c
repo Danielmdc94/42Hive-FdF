@@ -6,12 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:46:58 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 15:06:00 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:22:40 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//Writes the control instructions in the screen
 void	display_controls(t_data *data)
 {
 	mlx_string_put(data->mlx, data->win, WIN_WIDTH - 250, 12, WHITE,
@@ -39,6 +40,7 @@ void	display_controls(t_data *data)
 	display_info(data);
 }
 
+//Writes info of current settings in the screen
 void	display_info(t_data *data)
 {
 	if (data->view == 0)
@@ -61,6 +63,7 @@ void	display_info(t_data *data)
 			"CONSTELLATION");
 }
 
+//Draws the ui frame
 void	draw_ui(t_data *data)
 {
 	int	x;

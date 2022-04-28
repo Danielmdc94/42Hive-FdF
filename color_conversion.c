@@ -6,12 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:16:20 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 11:50:57 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:43:43 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//Makes the 3 RGB values a single int
 int	rgb_to_int(int red, int green, int blue)
 {
 	int	color;
@@ -20,6 +21,7 @@ int	rgb_to_int(int red, int green, int blue)
 	return (color);
 }
 
+//Gets the RED value of an int color
 int	int_to_red(int color)
 {
 	int	red;
@@ -28,6 +30,7 @@ int	int_to_red(int color)
 	return (red);
 }
 
+//Gets the GREEN value of an int color
 int	int_to_green(int color)
 {
 	int	green;
@@ -36,6 +39,7 @@ int	int_to_green(int color)
 	return (green);
 }
 
+//Gets the BLUE value of an int color
 int	int_to_blue(int color)
 {
 	int	blue;

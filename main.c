@@ -6,18 +6,20 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:27:37 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 14:28:49 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:07:59 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//Exits the program in case of an error and prints a related message
 void	error_print(char *e_string, t_data *data)
 {
 	ft_putendl(e_string);
 	exit_fdf(53, data);
 }
 
+//Start of the program
 int	main(int argc, char **argv)
 {
 	t_data	data;

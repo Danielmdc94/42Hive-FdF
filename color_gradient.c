@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:36:05 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/11 16:19:56 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:42:07 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	red_gradient(int color0, int color1, int steps);
 static int	green_gradient(int color0, int color1, int steps);
 static int	blue_gradient(int color0, int color1, int steps);
 
+//Gets the RGB values of each point in a line based on starting and ending color
 int	color_gradient(int color0, int color1, int steps)
 {
 	int	red;

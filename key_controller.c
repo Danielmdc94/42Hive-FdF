@@ -6,12 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 13:33:07 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:27:51 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//Closes fdf cleanly and frees all allocated memory
 int	exit_fdf(int key, t_data *data)
 {
 	int	y;
@@ -35,6 +36,7 @@ int	exit_fdf(int key, t_data *data)
 	return (1);
 }
 
+//Moves the "camera" up, left, down and right with W,A,S,D keys
 int	pan_view(int key, t_data *data)
 {
 	if (key == 13)
@@ -56,6 +58,7 @@ int	pan_view(int key, t_data *data)
 	return (1);
 }
 
+//Changes between "top-down" and "perspective view" with V key
 int	switch_view(int key, t_data *data)
 {
 	if (key == 9)
@@ -78,6 +81,7 @@ int	switch_view(int key, t_data *data)
 	return (1);
 }
 
+//Modifies the map altitude of each non-zero point with R,F keys
 int	change_height(int key, t_data *data)
 {
 	int	x;
@@ -91,7 +95,8 @@ int	change_height(int key, t_data *data)
 		{
 			while (x < data->map_width)
 			{
-				if (data->matrix[y][x] != 0 && key == 15)
+				if (data->matrix[y][x] != 0 && key == 15
+					&& data->matrix[y][x] < 5000)
 					data->matrix[y][x] *= 1.25;
 				else if (data->matrix[y][x] != 0 && key == 3)
 					data->matrix[y][x] /= 1.25;
@@ -106,6 +111,7 @@ int	change_height(int key, t_data *data)
 	return (1);
 }
 
+//Modifies de viewing angle of "Perspective" view with Q,E,T,G keys
 int	change_angle(int key, t_data *data)
 {
 	if (key == 17 && data->view == 1 && data->iso_angle > 0.01)

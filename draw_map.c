@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 15:27:02 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:35:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static t_line	horizontal_line(t_data *data, int x, int y);
 static t_line	vertical_line(t_data *data, int x, int y);
 
+//Draws the given map in the screen
 void	draw_map(t_data *data)
 {
 	int		x;
@@ -41,6 +42,7 @@ void	draw_map(t_data *data)
 	}
 }
 
+//makes horizontal lines based on projection and perspective from each map point
 static t_line	horizontal_line(t_data *data, int x, int y)
 {
 	t_line	line;
@@ -67,6 +69,7 @@ static t_line	horizontal_line(t_data *data, int x, int y)
 	return (line);
 }
 
+//makes vertical lines based on perspective from each map point
 static t_line	vertical_line(t_data *data, int x, int y)
 {
 	t_line	line;
@@ -93,14 +96,16 @@ static t_line	vertical_line(t_data *data, int x, int y)
 	return (line);
 }
 
+//Moves each point to a new spot in the screen based on rotation of perspective
 void	rotate(int *x, int *y, t_data *data)
 {
 	*x = *x * cos(data->rot_angle) - *y * sin(data->rot_angle);
 	*y = *y * cos(data->rot_angle) + *x * sin(data->rot_angle);
 }
 
+//Moves each point to a new spot in the screen based on perspective
 void	isometric(int *x, int *y, int z, t_data *data)
 {
 	*x = ((*x - *y) * cos(data->iso_angle));
-	*y = ((*x + *y) * sin(data->iso_angle) - (z / 4));
+	*y = ((*x + *y) * sin(data->iso_angle) - (z));
 }

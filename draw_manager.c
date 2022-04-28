@@ -6,12 +6,13 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 15:16:39 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:31:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//Creates images to put in the window for the wireframe and ui
 void	draw(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->win);
@@ -40,6 +41,7 @@ void	draw(t_data *data)
 	data->img_addr = NULL;
 }
 
+//Colors each given pixel guarding that it never leaves the image
 void	img_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*pixel;
@@ -56,6 +58,7 @@ void	img_pixel_put(t_data *data, int x, int y, int color)
 	}
 }
 
+//Choses and colors every pixel forming a straight line between two points
 int	draw_line(t_line line, t_data *data, int c0, int c1)
 {
 	float	dx;
@@ -85,6 +88,7 @@ int	draw_line(t_line line, t_data *data, int c0, int c1)
 	return (1);
 }
 
+//Moves the start of the map drawing to center it on screen
 void	offset_draw(t_data *data)
 {
 	data->y_off = WIN_HEIGHT / 6;

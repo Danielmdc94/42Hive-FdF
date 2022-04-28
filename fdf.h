@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 14:19:52 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:07:10 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,6 @@ typedef struct s_line{
 	int	y1;
 }				t_line;
 
-/*-------POINT------*/
-typedef struct s_point{
-	int	x;
-	int	y;
-	int	z;
-	int	color;
-}				t_point;
-
 /*-------MAIN-------*/
 void	error_print(char *e_string, t_data *data);
 
@@ -106,7 +98,7 @@ void	img_pixel_put(t_data *data, int x, int y, int color);
 void	draw(t_data *data);
 t_line	make_line(t_data *data, char *dir, int x, int y);
 
-/*---DRAW MANAGER---*/
+/*-----DRAW MAP-----*/
 void	draw_map(t_data *data);
 void	rotate(int *x, int *y, t_data *data);
 void	isometric(int *x, int *y, int z, t_data *data);

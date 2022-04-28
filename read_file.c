@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:04:10 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/14 15:40:20 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:21:42 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	create_matrix(t_data *data);
 void	fill_matrix(t_data *data, int fd);
 void	fill_line(t_data *data, char **line_arr, int y);
 
+//Opens and reads the file, saving it.
 void	read_file(char *file, t_data *data)
 {
 	char	*line;
@@ -41,6 +42,7 @@ void	read_file(char *file, t_data *data)
 	close(fd);
 }
 
+//Gets the width (in number of elements) of the map given
 void	get_width(char *line, t_data *data)
 {
 	int	i;
@@ -68,6 +70,8 @@ void	get_width(char *line, t_data *data)
 		error_print("Error (2): Empty file", data);
 }
 
+//Allocates a matrix for colors and another for the value (altitude)
+//Each element of the matrices represents a point (x,y)
 void	create_matrix(t_data *data)
 {
 	int	i;
@@ -96,6 +100,7 @@ void	create_matrix(t_data *data)
 	}
 }
 
+//Goes through every line of the matrices filling it with the map values
 void	fill_matrix(t_data *data, int fd)
 {
 	char	**line_arr;
@@ -121,6 +126,7 @@ void	fill_matrix(t_data *data, int fd)
 	}
 }
 
+//Fill each line of both matrices
 void	fill_line(t_data *data, char **line_arr, int y)
 {
 	int	i;
