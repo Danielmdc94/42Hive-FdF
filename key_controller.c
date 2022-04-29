@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 19:17:09 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/04/29 18:46:25 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ int	change_height(int key, t_data *data)
 			{
 				if (data->matrix[y][x] != 0 && key == 15
 					&& data->matrix[y][x] < 5000000)
-					data->matrix[y][x] *= 1.25;
+					data->matrix[y][x] *= 1.1;
 				else if (data->matrix[y][x] != 0 && key == 3)
-					data->matrix[y][x] /= 1.25;
+					data->matrix[y][x] /= 1.1;
 				choose_color(data, x, y);
 				x++;
 			}
