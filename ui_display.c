@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:46:58 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 18:49:35 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:06:55 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void	display_controls(t_data *data)
 	mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 160, 0xf6f095,
 		"KEYBOARD:");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 135, 0xEAEAEA,
-		"W, A, S, D - Pan view Up, Left, Down, Right");
+		"W, A, S, D - Pan camera Up, Left, Down, Right");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 110, 0xEAEAEA,
-		"Q, E, T, G - Rotate Left, Right, Down, Up");
+		"Q, E, T, G - Change projection angle Left, Right, Down, Up");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 85, 0xEAEAEA,
 		"SPACE - Reset view");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 60, 0xEAEAEA,
-		"V - Switch projection view");
+		"V - Switch 3D/2D");
 	mlx_string_put(data->mlx, data->win, 35, WIN_HEIGHT - 35, 0xEAEAEA,
-		"R, F - Change altitud Up, Down");
-	mlx_string_put(data->mlx, data->win, 525, WIN_HEIGHT - 160, 0xf6f095,
+		"R, F - Change point altitud Up, Down");
+	mlx_string_put(data->mlx, data->win, 645, WIN_HEIGHT - 160, 0xf6f095,
 		"MOUSE:");
-	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 135, 0xEAEAEA,
+	mlx_string_put(data->mlx, data->win, 655, WIN_HEIGHT - 135, 0xEAEAEA,
 		"RIGHT CLICK - Change color scheme");
-	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 110, 0xEAEAEA,
+	mlx_string_put(data->mlx, data->win, 655, WIN_HEIGHT - 110, 0xEAEAEA,
 		"WHEEL UP - Zoom in");
-	mlx_string_put(data->mlx, data->win, 535, WIN_HEIGHT - 85, 0xEAEAEA,
+	mlx_string_put(data->mlx, data->win, 655, WIN_HEIGHT - 85, 0xEAEAEA,
 		"WHEEL DOWN - Zoom out");
 	display_info(data);
 }
@@ -50,7 +50,7 @@ void	display_info(t_data *data)
 			"TOP-DOWN");
 	if (data->view == 1)
 		mlx_string_put(data->mlx, data->win, 25, 70, 0xf6f095,
-			"PERSPECTIVE");
+			"AXONOMETRIC");
 	if (data->color_scheme == 0)
 		mlx_string_put(data->mlx, data->win, 25, WIN_HEIGHT - 210, 0xf6f095,
 			"BASIC");

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/29 18:46:25 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:40:39 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	pan_view(int key, t_data *data)
 		data->x_off -= data->zoom + 5;
 	if (key == 49)
 	{
-		data->iso_angle = 0.9;
+		data->axo_angle = 0.9;
 		offset_draw(data);
 		if (data->view == 1)
 			data->x_off += data->zoom * data->map_width / 2;
@@ -71,7 +71,7 @@ int	switch_view(int key, t_data *data)
 			data->view = 0;
 		if (data->view == 1)
 		{
-			data->iso_angle = 0.9;
+			data->axo_angle = 0.9;
 			data->x_off += data->zoom * data->map_width / 2;
 		}
 		if (data->view == 0)
@@ -114,22 +114,22 @@ int	change_height(int key, t_data *data)
 //Modifies de viewing angle of "Perspective" view with Q,E,T,G keys
 int	change_angle(int key, t_data *data)
 {
-	if (key == 17 && data->view == 1 && data->iso_angle > 0.01)
+	if (key == 17 && data->view == 1 && data->axo_angle > 0.01)
 	{
-			data->iso_angle -= 0.01;
+			data->axo_angle -= 0.01;
 			data->y_off += 5;
 	}
-	if (key == 5 && data->view == 1 && data->iso_angle < 1)
+	if (key == 5 && data->view == 1 && data->axo_angle < 1)
 	{
-		data->iso_angle += 0.01;
+		data->axo_angle += 0.01;
 		data->y_off -= 5;
 	}
-	if (key == 12 && data->view == 1 && data->rot_angle > -0.4)
+	if (key == 12 && data->view == 1 && data->rot_angle > -0.6)
 	{
 		data->rot_angle -= 0.01;
 		data->x_off -= 5;
 	}
-	if (key == 14 && data->view == 1 && data->rot_angle < 0.2)
+	if (key == 14 && data->view == 1 && data->rot_angle < 0.6)
 	{
 		data->rot_angle += 0.01;
 		data->x_off += 5;

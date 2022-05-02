@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 18:04:10 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 17:24:16 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:49:32 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,15 +142,7 @@ void	fill_line(t_data *data, char **line_arr, int y)
 		if (line_arr[x][i++] == 'x')
 			data->color_matrix[y][x] = ft_atoi_base(&line_arr[x][i], 16);
 		else
-		{
-			if (data->matrix[y][x] == 0)
-				data->color_matrix[y][x] = WHITE;
-			else if (data->matrix[y][x] > 0)
-				data->color_matrix[y][x] = RED;
-			else
-				data->color_matrix[y][x] = BLUE;
 			choose_color(data, x, y);
-		}
 		i = 0;
 		x++;
 	}

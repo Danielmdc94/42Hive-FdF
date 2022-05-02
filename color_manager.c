@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:43:09 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 16:39:03 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:30:49 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,12 @@ void	choose_color(t_data *data, int x, int y)
 
 static void	basic_color(t_data *data, int x, int y)
 {
-	if (data->matrix[y][x] <= -50)
+	if (data->matrix[y][x] == 0)
 		data->color_matrix[y][x] = WHITE;
-	else if (data->matrix[y][x] > -50 && data->matrix[y][x] <= -20)
-		data->color_matrix[y][x] = GREEN;
-	else if (data->matrix[y][x] > -20 && data->matrix[y][x] <= 0)
-		data->color_matrix[y][x] = CYAN;
-	else if (data->matrix[y][x] > 0 && data->matrix[y][x] <= 20)
-		data->color_matrix[y][x] = BLUE;
-	else if (data->matrix[y][x] > 20 && data->matrix[y][x] <= 50)
-		data->color_matrix[y][x] = YELLOW;
-	else if (data->matrix[y][x] > 50 && data->matrix[y][x] <= 80)
-		data->color_matrix[y][x] = MAGENTA;
-	else if (data->matrix[y][x] > 80)
+	else if (data->matrix[y][x] > 0)
 		data->color_matrix[y][x] = RED;
+	else if (data->matrix[y][x] < 0)
+		data->color_matrix[y][x] = BLUE;
 }
 
 static void	geo_color(t_data *data, int x, int y)

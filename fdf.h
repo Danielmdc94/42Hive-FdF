@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 16:07:10 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/02 13:38:51 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data{
 	int		zoom;
 	int		x_off;
 	int		y_off;
-	float	iso_angle;
+	float	axo_angle;
 	float	rot_angle;
 	int		view;
 }				t_data;
@@ -101,7 +101,7 @@ t_line	make_line(t_data *data, char *dir, int x, int y);
 /*-----DRAW MAP-----*/
 void	draw_map(t_data *data);
 void	rotate(int *x, int *y, t_data *data);
-void	isometric(int *x, int *y, int z, t_data *data);
+void	axonometric(int *x, int *y, int z, t_data *data);
 
 /*---COLOR MANAGER--*/
 void	choose_color(t_data *data, int x, int y);
