@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 13:54:47 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/05/02 13:38:51 by dpalacio         ###   ########.fr       */
+/*   Created: 2022/05/05 15:03:38 by dpalacio          #+#    #+#             */
+/*   Updated: 2022/05/05 15:28:33 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		mouse_wheel(int button, int x, int y, t_data *data);
 int		right_click(int key, int x, int y, t_data *data);
 
 /*--KEY CONTROLLER--*/
-int		exit_fdf(int key, t_data *data);
+int		exit_fdf(t_data *data);
 int		pan_view(int key, t_data *data);
 int		switch_view(int key, t_data *data);
 int		change_height(int key, t_data *data);

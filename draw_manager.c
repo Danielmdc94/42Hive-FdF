@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:51:12 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/29 18:43:52 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:18:11 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ void	draw(t_data *data)
 	mlx_clear_window(data->mlx, data->win);
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img)
-		error_print("Error(4): Image not allocated", data);
+		error_print("Error(7): Image not allocated", data);
 	data->img_addr = mlx_get_data_addr(data->img, &data->px_bits,
 			&data->line_bytes, &data->endian);
 	if (!data->img_addr)
-		error_print("Error(4): Image address not allocated", data);
+		error_print("Error(8): Image address not allocated", data);
 	draw_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img)
-		error_print("Error(4): Image not allocated", data);
+		error_print("Error(7): Image not allocated", data);
 	data->img_addr = mlx_get_data_addr(data->img, &data->px_bits,
 			&data->line_bytes, &data->endian);
 	if (!data->img_addr)
-		error_print("Error(4): Image address not allocated", data);
+		error_print("Error(8): Image address not allocated", data);
 	draw_ui(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	display_controls(data);
@@ -91,6 +91,8 @@ int	draw_line(t_line line, t_data *data, int c0, int c1)
 //Moves the start of the map drawing to center it on screen
 void	offset_draw(t_data *data)
 {
+	if (data->map_height == 0)
+		error_print("Error(9): Parameter is not a valid file", data);
 	data->y_off = WIN_HEIGHT / 6;
 	data->zoom = (WIN_HEIGHT - 2 * data->y_off) / data->map_height;
 	data->x_off = (WIN_WIDTH - data->map_width * data->zoom) / 2;

@@ -6,7 +6,7 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:42:50 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/04/28 16:25:58 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:32:27 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	controls(t_data *data)
 	mlx_hook(data->win, 3, 0, on_keyup, data);
 	mlx_hook(data->win, 2, 0, on_keydown, data);
 	mlx_hook(data->win, 4, 0, on_mousedown, data);
+	mlx_hook(data->win, 17, 0, exit_fdf, data);
 }
 
 //Holds the controls for every keydown event (press key)
@@ -33,7 +34,8 @@ int	on_keydown(int key, t_data *data)
 //Holds the controls for every keyup event (release key)
 int	on_keyup(int key, t_data *data)
 {
-	exit_fdf(key, data);
+	if (key == 53)
+		exit_fdf(data);
 	return (1);
 }
 

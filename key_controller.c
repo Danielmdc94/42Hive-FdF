@@ -6,33 +6,30 @@
 /*   By: dpalacio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:43:31 by dpalacio          #+#    #+#             */
-/*   Updated: 2022/05/02 13:40:39 by dpalacio         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:32:25 by dpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 //Closes fdf cleanly and frees all allocated memory
-int	exit_fdf(int key, t_data *data)
+int	exit_fdf(t_data *data)
 {
 	int	y;
 
 	y = 0;
-	if (key == 53)
+	if (data->color_matrix && data->matrix)
 	{
-		if (data->color_matrix && data->matrix)
+		while (y <= data->map_height)
 		{
-			while (y <= data->map_height)
-			{
-				free(data->color_matrix[y]);
-				free(data->matrix[y]);
-				y++;
-			}
-			free(data->color_matrix);
-			free(data->matrix);
+			free(data->color_matrix[y]);
+			free(data->matrix[y]);
+			y++;
 		}
-		exit(0);
+		free(data->color_matrix);
+		free(data->matrix);
 	}
+	exit(0);
 	return (1);
 }
 
